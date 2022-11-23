@@ -1,0 +1,88 @@
+.bandview {
+    width: calc(100% - 50px);
+    margin: 35px auto 0 auto;
+    display: grid;
+    column-gap: 25px;
+    row-gap: 19px;
+    grid-template-areas: 
+    "spotify youtube instagram"
+    "spotify player instagram";
+    grid-template-columns: 1fr 2.6fr 1fr;
+    grid-template-rows: auto 75px;
+
+    &__left {
+        grid-area: spotify;
+        height: 680px;
+        background-color: $areabg;
+        border-radius: 15px;
+
+        &__titlebar {
+            display: flex;
+            align-items: center;
+            padding-left: 17px;
+            h3 {
+                font-family: 'Inter Bold';
+                font-size: 1.125rem;
+                color: $textareaheading;
+            }
+            img {
+                padding-left: 5px;
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+
+    &__center {
+        grid-area: youtube;
+        height: 587px;
+        background-color: $areabg;
+        border-radius: 15px;
+        
+        &__titlebar {
+            padding-left: 17px;
+            display: flex;
+            align-items: center;
+
+            h3 {
+                font-family: 'Inter Bold';
+                font-size: 1.125rem;
+                color: $textareaheading;
+            }
+            img {
+                padding-left: 5px;
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+
+    &__player {
+        grid-area: player;
+        background-color: $playerbg;
+        border-radius: 15px;
+    }
+
+    &__right {
+        grid-area: instagram;
+        height: 680px;
+        background-color: $areabg;
+        border-radius: 15px;
+
+        &__titlebar {
+            display: flex;
+            align-items: center;
+            padding-left: 17px;
+            h3 {
+                font-family: 'Inter Bold';
+                font-size: 1.125rem;
+                color: $textareaheading;
+            }
+            img {
+                padding-left: 5px;
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+}

@@ -1,7 +1,7 @@
 // img imports
 import dropdownCarat from "./img/dropdowncarat.png";
 
-import { SpotifyContainer } from "../Spotify/SpotifyContainer";
+import { Spotify } from "../Spotify/Spotify";
 
 export const BandView = (props) => {
 	return (
@@ -12,7 +12,7 @@ export const BandView = (props) => {
 					<img src={dropdownCarat} alt="" />
 				</div>
 
-				<SpotifyContainer />
+				<Spotify />
 			</div>
 
 			<div className="bandview__center">

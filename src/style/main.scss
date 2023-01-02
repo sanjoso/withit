@@ -1,18 +1,19 @@
 // Imports
-@import 'fonts';
-@import 'colors';
-@import 'titlebar';
-@import 'bandview';
+@import "fonts";
+@import "colors";
+@import "../components/Titlebar/titlebar";
+@import "../components/BandView/bandview";
+@import "../components/Spotify/spotifymain";
 
 html {
-    font-family: 'Inter';
-    font-size: 16px;
+	font-family: "Inter";
+	font-size: 16px;
 }
 
 body {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }

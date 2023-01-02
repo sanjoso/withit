@@ -37,12 +37,18 @@ export const getPlaylistItems = () => {
 	const headers = { Authorization: `Bearer ${token}` };
 
 	fetch(`${endpoint}`, { headers: headers })
-		.then((response) => {
-			if (response.ok) {
-				return response.json();
-			}
-		})
+		.then(
+			(response) => {
+				if (response.ok) {
+					return response.json();
+				}
+				throw new Error("Request failed!");
+			},
+			(networkError) => console.log(networkError.message)
+		)
 		.then((jsonResponse) => {
 			console.log(jsonResponse);
 		});
+
+	return <h1>IT WORKED!</h1>;
 };

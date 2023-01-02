@@ -6,7 +6,6 @@ import {
 	Routes,
 } from "react-router-dom";
 import { BandView } from "./components/BandView/BandView";
-
 import { TitleBar } from "./components/Titlebar/TitleBar";
 
 import "./style/main.css";

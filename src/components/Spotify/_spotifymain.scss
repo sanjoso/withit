@@ -1,55 +1,5 @@
 .spotifymain {
 	width: 100%;
-	height: 100%;
-}
-
-.spotifymain__track {
-	display: grid;
-	grid-template-areas:
-		"artwork title . ."
-		"artwork artist date link"
-		"artwork . . .";
-	&__artwork {
-		grid-area: artwork;
-		img {
-			margin: 0;
-			padding-left: 28px;
-			height: 45px;
-			width: 45px;
-			border-radius: 8px;
-		}
-	}
-
-	&__title {
-		grid-area: title;
-		color: $textdark;
-		font-family: "Inter Medium";
-		font-size: 0.875rem;
-	}
-
-	&__artist {
-		grid-area: artist;
-		color: $textinactive;
-		font-family: "Inter Regular";
-		font-size: 0.6875rem;
-	}
-
-	&__date {
-		grid-area: date;
-		color: $textinactive;
-		font-family: "Inter Regular";
-		font-size: 0.6875rem;
-	}
-
-	&__link {
-		grid-area: link;
-		display: flex;
-		img {
-			margin: 0;
-			padding: 0;
-			width: 15px;
-			height: 15px;
-			align-items: center;
-		}
-	}
+	height: 610px;
+	overflow: auto;
 }

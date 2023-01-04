@@ -1,10 +1,10 @@
-import { getSpotifyToken } from "./SpotifyUtils";
+//import { getSpotifyToken } from "./SpotifyUtils";
 import { SpotifyMain } from "./SpotifyMain";
-
-const token = window.localStorage.getItem("spotifyToken");
-console.log(token);
+import { getSpotifyToken } from "./SpotifyUtils";
 
 export const SpotifyContainer = () => {
+	let token = window.localStorage.getItem("spotifyToken");
+
 	return (
 		<div className="spotifycontainer">
 			{!token ? (

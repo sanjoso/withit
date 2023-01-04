@@ -13,12 +13,13 @@ export const loginURL = `${authEndpoint}?client_id=${clientId}&redirect_uri=${re
 	"%20"
 )}&response_type=${responseType}&show_dialog=true`;
 
-export const getSpotifyToken = async () => {
+export const getSpotifyToken = () => {
 	let token = window.localStorage.getItem("spotifyToken");
 	const hash = window.location.hash;
+	window.location = loginURL;
 
-	if (!token) {
-		window.location = loginURL;
+	if (!token && hash) {
+		// window.location = loginURL;
 		token = hash
 			.substring(1)
 			.split("&")
@@ -49,6 +50,4 @@ export const getPlaylistItems = () => {
 		.then((jsonResponse) => {
 			console.log(jsonResponse);
 		});
-
-	return <h1>IT WORKED!</h1>;
 };

@@ -153,46 +153,51 @@
 
 .spotifymain {
   width: 100%;
-  height: 100%;
+  height: 610px;
+  overflow: auto;
 }
 
-.spotifymain__track {
+.spotifytrack {
   display: grid;
-  grid-template-areas: "artwork title . ." "artwork artist date link" "artwork . . .";
+  grid-template-areas: "artwork title title title" "artwork artist date link" "artwork . . .";
+  justify-content: start;
+  gap: 0 0.625rem;
 }
-.spotifymain__track__artwork {
+.spotifytrack__artwork {
   grid-area: artwork;
 }
-.spotifymain__track__artwork img {
-  margin: 0;
-  padding-left: 28px;
+.spotifytrack__artwork img {
   height: 45px;
   width: 45px;
   border-radius: 8px;
 }
-.spotifymain__track__title {
+.spotifytrack__title {
   grid-area: title;
+  margin: 0;
+  padding: 0;
   color: #282430;
   font-family: "Inter Medium";
   font-size: 0.875rem;
 }
-.spotifymain__track__artist {
+.spotifytrack__artist {
   grid-area: artist;
+  margin: 0;
+  padding: 0;
   color: #AC9FC6;
   font-family: "Inter Regular";
   font-size: 0.6875rem;
 }
-.spotifymain__track__date {
+.spotifytrack__date {
   grid-area: date;
   color: #AC9FC6;
   font-family: "Inter Regular";
   font-size: 0.6875rem;
 }
-.spotifymain__track__link {
+.spotifytrack__link {
   grid-area: link;
   display: flex;
 }
-.spotifymain__track__link img {
+.spotifytrack__link img {
   margin: 0;
   padding: 0;
   width: 15px;

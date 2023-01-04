@@ -1,21 +1,22 @@
-import { getPlaylistItems } from "./SpotifyUtils";
-import albumArtwork from "./firm foundation artwork.jpg";
-import trackOpenIcon from "./img/track-open.svg";
+import { fetchPlaylistTracks, selectTracks } from "./tracksSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { SpotifyTrack } from "./SpotifyTrack";
 
 export const SpotifyMain = () => {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchPlaylistTracks());
+	}, [dispatch]);
+
+	const tracks = useSelector(selectTracks);
+
 	return (
 		<div className="spotifymain">
-			<div className="spotifymain__track">
-				<div className="spotifymain__track__artwork">
-					<img src={albumArtwork} alt="" />
-				</div>
-				<div className="spotifymain__track__title">Firm Foundation</div>
-				<div className="spotifymain__track__artist">Elevation Worship</div>
-				<div className="spotifymain__track__date">Nov 10</div>
-				<div className="spotifymain__track__link">
-					<img src={trackOpenIcon} alt="" />
-				</div>
-			</div>
+			{tracks.map((track) => {
+				return <SpotifyTrack track={track} key={track.id} />;
+			})}
 		</div>
 	);
 };

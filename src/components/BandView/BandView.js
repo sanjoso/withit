@@ -1,7 +1,7 @@
 // img imports
 import dropdownCarat from "./img/dropdowncarat.png";
 
-import { SpotifyContainer } from "../Spotify/Spotify";
+import { SpotifyContainer } from "../Spotify/SpotifyContainer";
 
 export const BandView = (props) => {
 	return (

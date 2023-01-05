@@ -41,7 +41,7 @@
 .titlebar {
   width: 100%;
   height: 60px;
-  background-color: #25064C;
+  background-color: #25064c;
   border-radius: 0 0 5px 5px;
   display: flex;
   align-items: center;
@@ -85,7 +85,7 @@
 .bandview__left {
   grid-area: spotify;
   height: 680px;
-  background-color: #F7F3FC;
+  background-color: #f7f3fc;
   border-radius: 15px;
 }
 .bandview__left__titlebar {
@@ -96,17 +96,18 @@
 .bandview__left__titlebar h3 {
   font-family: "Inter Bold";
   font-size: 1.125rem;
-  color: #858FA3;
+  color: #858fa3;
 }
 .bandview__left__titlebar img {
-  padding-left: 5px;
+  margin-left: auto;
+  padding-right: 15px;
   width: 16px;
   height: 16px;
 }
 .bandview__center {
   grid-area: youtube;
   height: 587px;
-  background-color: #F7F3FC;
+  background-color: #f7f3fc;
   border-radius: 15px;
 }
 .bandview__center__titlebar {
@@ -117,22 +118,23 @@
 .bandview__center__titlebar h3 {
   font-family: "Inter Bold";
   font-size: 1.125rem;
-  color: #858FA3;
+  color: #858fa3;
 }
 .bandview__center__titlebar img {
-  padding-left: 5px;
+  margin-left: auto;
+  padding-right: 15px;
   width: 16px;
   height: 16px;
 }
 .bandview__player {
   grid-area: player;
-  background-color: #F0ECF9;
+  background-color: #f0ecf9;
   border-radius: 15px;
 }
 .bandview__right {
   grid-area: instagram;
   height: 680px;
-  background-color: #F7F3FC;
+  background-color: #f7f3fc;
   border-radius: 15px;
 }
 .bandview__right__titlebar {
@@ -143,10 +145,11 @@
 .bandview__right__titlebar h3 {
   font-family: "Inter Bold";
   font-size: 1.125rem;
-  color: #858FA3;
+  color: #858fa3;
 }
 .bandview__right__titlebar img {
-  padding-left: 5px;
+  margin-left: auto;
+  padding-right: 15px;
   width: 16px;
   height: 16px;
 }
@@ -183,13 +186,13 @@
   grid-area: artist;
   margin: 0;
   padding: 0;
-  color: #AC9FC6;
+  color: #ac9fc6;
   font-family: "Inter Regular";
   font-size: 0.6875rem;
 }
 .spotifytrack__date {
   grid-area: date;
-  color: #AC9FC6;
+  color: #ac9fc6;
   font-family: "Inter Regular";
   font-size: 0.6875rem;
 }
@@ -203,6 +206,45 @@
   width: 15px;
   height: 15px;
   align-items: center;
+}
+
+.searchpopup {
+  width: 250px;
+  height: 205px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px black;
+}
+.searchpopup__searchbar__search {
+  padding-top: 28px;
+  display: flex;
+  justify-content: center;
+}
+.searchpopup__searchbar__search input {
+  height: 28px;
+  padding-left: 8px;
+  background-color: #e7eeee;
+  border: 0;
+  border-radius: 5px;
+  color: #afa8bd;
+  font-family: "Inter SemiBold";
+  font-size: 0.75rem;
+}
+.searchpopup__subscriptionscontainer {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-items: center;
+}
+.searchpopup__subscriptionscontainer p {
+  padding-left: 28px;
+  grid-column-start: 1;
+  color: #282430;
+  font-family: "Nunito Medium";
+  font-size: 0.875rem;
+}
+.searchpopup__subscriptionscontainer img {
+  margin-right: auto;
+  grid-column-start: 2;
 }
 
 html {

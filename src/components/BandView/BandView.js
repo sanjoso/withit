@@ -1,7 +1,8 @@
 // img imports
-import dropdownCarat from "./img/dropdowncarat.png";
+import ellipses from "./img/ellipses.png";
 
 import { SpotifyContainer } from "../Spotify/SpotifyContainer";
+import { SearchPopup } from "../SearchPopup/SearchPopup";
 
 export const BandView = (props) => {
 	return (
@@ -9,7 +10,7 @@ export const BandView = (props) => {
 			<div className="bandview__left">
 				<div className="bandview__left__titlebar">
 					<h3>SPOTIFY</h3>
-					<img src={dropdownCarat} alt="" />
+					<img src={ellipses} alt="" />
 				</div>
 
 				<SpotifyContainer />
@@ -18,7 +19,7 @@ export const BandView = (props) => {
 			<div className="bandview__center">
 				<div className="bandview__center__titlebar">
 					<h3>YOUTUBE</h3>
-					<img src={dropdownCarat} alt="" />
+					<img src={ellipses} alt="" />
 				</div>
 				<div className="bandview__center__videolist">
 					{/* Render videolist component here */}
@@ -33,13 +34,15 @@ export const BandView = (props) => {
 			<div className="bandview__right">
 				<div className="bandview__right__titlebar">
 					<h3>INSTAGRAM</h3>
-					<img src={dropdownCarat} alt="" />
+					<img src={ellipses} alt="" />
 				</div>
 
 				<div className="bandview__right__piclist">
 					{/* Render piclist component here */}
 				</div>
 			</div>
+
+			<SearchPopup />
 		</div>
 	);
 };

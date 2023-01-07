@@ -9,29 +9,13 @@
 		"spotify player instagram";
 	grid-template-columns: 1fr 2.6fr 1fr;
 	grid-template-rows: auto 75px;
+	position: relative;
 
 	&__left {
 		grid-area: spotify;
 		height: 680px;
 		background-color: $areabg;
 		border-radius: 15px;
-
-		&__titlebar {
-			display: flex;
-			align-items: center;
-			padding-left: 17px;
-			h3 {
-				font-family: "Inter Bold";
-				font-size: 1.125rem;
-				color: $textareaheading;
-			}
-			img {
-				margin-left: auto;
-				padding-right: 15px;
-				width: 16px;
-				height: 16px;
-			}
-		}
 	}
 
 	&__center {

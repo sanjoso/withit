@@ -1,18 +1,12 @@
-// img imports
+import { useState } from "react";
 import ellipses from "./img/ellipses.png";
 
 import { SpotifyContainer } from "../Spotify/SpotifyContainer";
-import { SearchPopup } from "../SearchPopup/SearchPopup";
 
 export const BandView = (props) => {
 	return (
 		<div className="bandview">
 			<div className="bandview__left">
-				<div className="bandview__left__titlebar">
-					<h3>SPOTIFY</h3>
-					<img src={ellipses} alt="" />
-				</div>
-
 				<SpotifyContainer />
 			</div>
 
@@ -41,8 +35,6 @@ export const BandView = (props) => {
 					{/* Render piclist component here */}
 				</div>
 			</div>
-
-			<SearchPopup />
 		</div>
 	);
 };

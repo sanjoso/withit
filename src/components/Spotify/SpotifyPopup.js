@@ -3,7 +3,7 @@ import { useState } from "react";
 
 // need to bring in some sort of prop saying what platform we are searching. Maybe declare a state in each component that is past as props to this one.s
 
-export const SearchPopup = (props) => {
+export const SpotifyPopup = (props) => {
 	const [searchQuery, setSearchQuery] = useState("Search (network)");
 
 	function handleChange(event) {
@@ -16,14 +16,14 @@ export const SearchPopup = (props) => {
 	}
 
 	return (
-		<div className="searchpopup">
-			<div className="searchpopup_searchbar">
-				<div className="searchpopup__searchbar__search">
+		<div className="spotifypopup">
+			<div className="spotifypopup_searchbar">
+				<div className="spotifypopup__searchbar__search">
 					<form onSubmit={handleSubmit}>
 						<input type="text" value={searchQuery} onChange={handleChange} />
 					</form>
 				</div>
-				<div className="searchpopup__subscriptionscontainer">
+				<div className="spotifypopup__subscriptionscontainer">
 					<p>New Worship Weekly</p>
 					<img src={trashCan} alt="" />
 				</div>

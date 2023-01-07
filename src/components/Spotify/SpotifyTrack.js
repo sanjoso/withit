@@ -1,4 +1,5 @@
 import trackOpenIcon from "./img/track-open.svg";
+const { format } = require("date-fns");
 
 export const SpotifyTrack = (props) => {
 	const track = props.track;
@@ -10,7 +11,9 @@ export const SpotifyTrack = (props) => {
 			</div>
 			<div className="spotifytrack__title">{track.track.name}</div>
 			<div className="spotifytrack__artist">{track.track.artists[0].name}</div>
-			<div className="spotifytrack__date">Nov 10</div>
+			<div className="spotifytrack__date">
+				{format(new Date(track.added_at.substring(0, 10)), "MMM d")}
+			</div>
 			<div className="spotifytrack__link">
 				<a href={track.track.uri}>
 					<img src={trackOpenIcon} alt="" />

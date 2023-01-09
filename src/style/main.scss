@@ -1,14 +1,5 @@
-// Imports
-@import "fonts";
-@import "colors";
-@import "../components/Titlebar/titlebar";
-@import "../components/BandView/bandview";
-@import "../components/Spotify/spotifycontainer";
-@import "../components/Spotify/spotifymain";
-@import "../components/Spotify/spotifytrack";
-
 html {
-	font-family: "Inter";
+	font-family: "Ubuntu";
 	font-size: 16px;
 }
 
@@ -17,5 +8,22 @@ body {
 	width: 100%;
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
 }
+
+.App {
+	display: grid;
+	grid-template-areas:
+		"sidebar searchbar"
+		"sidebar main";
+	grid-template-columns: 96px auto;
+	grid-template-rows: 85px auto;
+}
+
+// Imports
+@import "fonts";
+@import "colors";
+@import "../components/Sidebar/sidebar";
+@import "../components/BandView/bandview";
+@import "../components/Spotify/spotifycontainer";
+@import "../components/Spotify/spotifymain";
+@import "../components/Spotify/spotifytrack";

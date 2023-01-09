@@ -1,0 +1,39 @@
+.sidebar {
+	grid-area: sidebar;
+	width: 96px;
+	height: 1000px;
+	background-color: $white;
+	border-radius: 0px 20px 20px 0px;
+	border: 0.5px solid $border;
+
+	&__logo {
+		height: 106px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-bottom: 0.5px solid $border;
+
+		img {
+			height: 65px;
+			width: 65px;
+		}
+	}
+
+	&__nav {
+		width: 100%;
+		height: calc(100% - 106px);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		&__button {
+			margin-bottom: 72px;
+		}
+	}
+
+	&__settingsbutton {
+		padding-right: 20px;
+	}
+}

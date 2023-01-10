@@ -3,15 +3,15 @@ const { app, BrowserWindow } = require("electron");
 function createWindow() {
 	// Create the browser window.
 	const win = new BrowserWindow({
-		width: 1600,
-		height: 900,
+		width: 1450,
+		height: 816,
 		webPreferences: {
 			nodeIntegration: true,
 		},
 	});
 
 	//load the index.html from a url
-	win.loadURL("http://joe-kde:3000");
+	win.loadURL("http://joe-suse:3000");
 
 	// Open the DevTools.
 	win.webContents.openDevTools();

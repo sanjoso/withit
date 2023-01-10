@@ -13,10 +13,10 @@ body {
 .App {
 	display: grid;
 	grid-template-areas:
-		"sidebar searchbar"
+		"sidebar main"
 		"sidebar main";
-	grid-template-columns: 96px auto;
-	grid-template-rows: 85px auto;
+	grid-template-columns: 78px auto;
+	grid-template-rows: auto auto;
 }
 
 // Imports

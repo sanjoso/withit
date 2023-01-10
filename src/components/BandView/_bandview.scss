@@ -10,8 +10,8 @@
 
 	&__youtube {
 		grid-area: youtube;
-		width: 960px;
-		height: 498px;
+		width: 815px;
+		height: 434px;
 		margin-left: 30px;
 		border-radius: 10px;
 		border: 0.5px solid $border;
@@ -19,17 +19,17 @@
 
 	&__spotify {
 		grid-area: spotify;
-		width: 960px;
-		height: 350px;
-		margin: 30px;
+		width: 815px;
+		height: 316px;
+		margin: 20px 20px 20px 30px;
 		border-radius: 10px;
 		border: 0.5px solid $border;
 	}
 
 	&__instagram {
 		grid-area: instagram;
-		width: 514px;
-		height: 876px;
+		width: 464px;
+		height: 718px;
 		border-radius: 10px;
 		border: 0.5px solid $border;
 	}

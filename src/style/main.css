@@ -12,9 +12,9 @@ body {
 
 .App {
   display: grid;
-  grid-template-areas: "sidebar searchbar" "sidebar main";
-  grid-template-columns: 96px auto;
-  grid-template-rows: 85px auto;
+  grid-template-areas: "sidebar main" "sidebar main";
+  grid-template-columns: 78px auto;
+  grid-template-rows: auto auto;
 }
 
 @font-face {
@@ -91,14 +91,14 @@ body {
 }
 .sidebar {
   grid-area: sidebar;
-  width: 96px;
-  height: 1000px;
+  width: 78px;
+  height: calc(100vh - 2px);
   background-color: #fff;
   border-radius: 0px 20px 20px 0px;
   border: 0.5px solid #d9d9d9;
 }
 .sidebar__logo {
-  height: 106px;
+  height: 86px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -111,14 +111,16 @@ body {
 }
 .sidebar__nav {
   width: 100%;
-  height: calc(100% - 106px);
+  height: calc(100% - 86px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 .sidebar__nav__button {
-  margin-bottom: 72px;
+  height: 26px;
+  width: 26px;
+  margin-bottom: 45px;
 }
 .sidebar__settingsbutton {
   padding-right: 20px;
@@ -133,24 +135,24 @@ body {
 }
 #bandview__youtube {
   grid-area: youtube;
-  width: 960px;
-  height: 498px;
+  width: 815px;
+  height: 434px;
   margin-left: 30px;
   border-radius: 10px;
   border: 0.5px solid #d9d9d9;
 }
 #bandview__spotify {
   grid-area: spotify;
-  width: 960px;
-  height: 350px;
-  margin: 30px;
+  width: 815px;
+  height: 316px;
+  margin: 20px 20px 20px 30px;
   border-radius: 10px;
   border: 0.5px solid #d9d9d9;
 }
 #bandview__instagram {
   grid-area: instagram;
-  width: 514px;
-  height: 876px;
+  width: 464px;
+  height: 718px;
   border-radius: 10px;
   border: 0.5px solid #d9d9d9;
 }

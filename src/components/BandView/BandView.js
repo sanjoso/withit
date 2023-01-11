@@ -1,4 +1,3 @@
-import { useState } from "react";
 import dropdowncarat from "./img/dropdowncarat.png";
 
 import { SpotifyContainer } from "../Spotify/SpotifyContainer";
@@ -13,10 +12,7 @@ export const BandView = (props) => {
 				</div>
 			</div>
 			<div id="bandview__spotify">
-				<div id="bandview__spotify__title">
-					Spotify
-					<img src={dropdowncarat} alt="" />
-				</div>
+				<SpotifyContainer />
 			</div>
 			<div id="bandview__instagram">
 				<div id="bandview__instagram__title">

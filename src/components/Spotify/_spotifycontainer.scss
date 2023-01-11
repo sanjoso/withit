@@ -1,18 +1,21 @@
-.spotifycontainer {
+#spotifycontainer {
 	&__titlebar {
+		width: 100%;
+		height: 36px;
 		display: flex;
+		justify-content: end;
 		align-items: center;
-		padding-left: 17px;
+
 		h3 {
-			font-family: "Inter Bold";
+			padding-right: 1px;
+			font-family: "Ubuntu Medium";
 			font-size: 1.125rem;
-			color: $textareaheading;
+			color: $gray4;
 		}
 		img {
-			margin-left: auto;
-			padding-right: 15px;
-			width: 16px;
-			height: 16px;
+			width: 24px;
+			height: 24px;
+			padding-right: 8px;
 		}
 	}
 }

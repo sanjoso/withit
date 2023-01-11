@@ -1,0 +1,25 @@
+#spotifyartwork {
+	width: 219px;
+	height: 272px;
+	padding-left: 24px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	grid-area: spotifyartwork;
+
+	img {
+		width: 195px;
+		height: 195px;
+		border-radius: 10px;
+		border: 0.5px solid $border;
+	}
+
+	p {
+		width: 195px;
+		margin: 0;
+		padding-left: 10px;
+		font-family: "Ubuntu Medium";
+		font-size: 1.125rem;
+		color: $gray2;
+	}
+}

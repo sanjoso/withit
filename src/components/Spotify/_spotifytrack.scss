@@ -1,22 +1,27 @@
 .spotifytrack {
 	display: grid;
 	grid-template-areas:
-		"artwork title title title"
-		"artwork artist date link"
-		"artwork artist date link";
+		"number artwork title title title title play like"
+		"number artwork artist date link duration play like"
+		"number artwork artist date link duration play like";
 	grid-template-columns: 1fr 2fr 1fr 1fr;
 	justify-content: space-evenly;
 	align-content: center;
 	gap: 0 0.625rem;
 
+	&__number {
+		grid-area: number;
+		font-family: "Ubuntu Bold";
+		font-size: 1.5rem;
+		color: $gray5;
+	}
+
 	&__artwork {
 		grid-area: artwork;
-		padding-left: 20px;
-		justify-self: start;
 		img {
 			height: 45px;
 			width: 45px;
-			border-radius: 8px;
+			border-radius: 10px;
 		}
 	}
 
@@ -24,39 +29,54 @@
 		grid-area: title;
 		margin: 0;
 		padding: 0;
-		color: $textdark;
-		font-family: "Inter Medium";
-		font-size: 0.875rem;
-		justify-self: start;
+		color: $gray2;
+		font-family: "Ubuntu Medium";
+		font-size: 1rem;
 	}
 
 	&__artist {
 		grid-area: artist;
 		margin: 0;
 		padding: 0;
-		color: $textinactive;
-		font-family: "Inter Regular";
-		font-size: 0.6875rem;
-		justify-self: start;
+		color: $gray4;
+		font-family: "Ubuntu Regular";
+		font-size: 0.75rem;
 	}
 
 	&__date {
 		grid-area: date;
-		color: $textinactive;
-		font-family: "Inter Regular";
-		font-size: 0.6875rem;
-		justify-self: center;
+		color: $gray4;
+		font-family: "Ubuntu Regular";
+		font-size: 0.75rem;
 	}
 
-	&__link {
-		padding-right: 0.625rem;
-		grid-area: link;
-		justify-self: end;
+	&__duration {
+		grid-area: duration;
+		color: $gray4;
+		font-family: "Ubuntu Medium";
+		font-size: 0.875rem;
+	}
+
+	&__play {
+		grid-area: play;
+		height: 45px;
+		width: 45px;
+		border: 0.5px solid $border;
+		border-radius: 10px;
+		justify-self: center;
+	}
+	&__like {
+		grid-area: like;
+		height: 45px;
+		width: 45px;
+		border: 0.5px solid $border;
+		border-radius: 10px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		img {
-			margin: 0;
-			padding: 0;
-			width: 15px;
-			height: 15px;
+			width: 28px;
+			height: 28px;
 		}
 	}
 }

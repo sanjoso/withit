@@ -1,7 +1,8 @@
 import { fetchPlaylistTracks, selectTracks } from "./tracksSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { SpotifyTrack } from "./SpotifyTrack";
+import { SpotifyArtwork } from "./SpotifyArtwork";
+import { SpotifyTracks } from "./SpotifyTracks";
 
 import trashCan from "./img/delete.png";
 
@@ -9,17 +10,15 @@ export const SpotifyMain = (props) => {
 	const dispatch = useDispatch();
 	const popupState = props.popup;
 	const [searchQuery, setSearchQuery] = useState("Search (network)");
-	const tracks = useSelector(selectTracks);
 
 	useEffect(() => {
-		dispatch(fetchPlaylistTracks());
-
-		const popup = document.getElementById("spotifymain__popup");
-		if (popupState) {
-			popup.style.display = "block";
-		} else {
-			popup.style.display = "none";
-		}
+		// dispatch(fetchPlaylistTracks());
+		// const popup = document.getElementById("spotifymain__popup");
+		// if (popupState) {
+		// 	popup.style.display = "block";
+		// } else {
+		// 	popup.style.display = "none";
+		// }
 	}, [dispatch, popupState]);
 
 	function handleChange(event) {
@@ -33,7 +32,7 @@ export const SpotifyMain = (props) => {
 
 	return (
 		<div id="spotifymain">
-			<div id="spotifymain__popup">
+			{/* <div id="spotifymain__popup">
 				<div id="spotifymain__popup__searchbar">
 					<div id="spotifymain__popup__searchbar__search">
 						<form onSubmit={handleSubmit}>
@@ -45,10 +44,12 @@ export const SpotifyMain = (props) => {
 						<img src={trashCan} alt="" />
 					</div>
 				</div>
-			</div>
-			{tracks.map((track) => {
+			</div> */}
+			<SpotifyArtwork />
+			<SpotifyTracks />
+			{/* {tracks.map((track) => {
 				return <SpotifyTrack track={track} key={track.id} />;
-			})}
+			})} */}
 		</div>
 	);
 };

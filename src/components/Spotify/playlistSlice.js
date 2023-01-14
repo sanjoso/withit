@@ -1,12 +1,14 @@
+import artworkPlaceholder from "./img/artworkplaceholder.png";
+
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchPlaylistTracks = createAsyncThunk(
-	"tracks/fetchPlaylistTracks",
+export const fetchPlaylist = createAsyncThunk(
+	"playlist/fetchPlaylist",
 	async () => {
 		const token = window.localStorage.getItem("spotifyToken");
 		const playlistId = "6Hq9wYRY3xs8p5SiIUc1Gw";
 		const headers = { Authorization: `Bearer ${token}` };
-		const endpoint = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+		const endpoint = `https://api.spotify.com/v1/playlists/${playlistId}`;
 
 		try {
 			const response = await fetch(`${endpoint}`, { headers: headers });
@@ -19,31 +21,34 @@ export const fetchPlaylistTracks = createAsyncThunk(
 );
 
 const slice = {
-	name: "tracks",
+	name: "playlist",
 	initialState: {
+		playlist: { artworkPlaceholder },
 		tracks: [],
 		isLoading: false,
 		hasError: false,
 	},
 	reducers: {},
 	extraReducers: {
-		[fetchPlaylistTracks.pending]: (state, action) => {
+		[fetchPlaylist.pending]: (state, action) => {
 			state.isLoading = true;
 			state.hasError = false;
 		},
-		[fetchPlaylistTracks.fulfilled]: (state, action) => {
+		[fetchPlaylist.fulfilled]: (state, action) => {
 			state.isLoading = false;
 			state.hasError = false;
-			state.tracks = action.payload.items;
+			state.playlist = action.payload.images[0];
+			state.tracks = action.payload.tracks.items;
 		},
-		[fetchPlaylistTracks.rejected]: (state, action) => {
+		[fetchPlaylist.rejected]: (state, action) => {
 			state.isLoading = false;
 			state.hasError = true;
 		},
 	},
 };
 
-const tracksSlice = createSlice(slice);
+const playlistSlice = createSlice(slice);
 
-export const selectTracks = (state) => state.tracks.tracks;
-export default tracksSlice.reducer;
+export const selectPlaylist = (state) => state.playlist.playlist;
+export const selectTracks = (state) => state.playlist.tracks;
+export default playlistSlice.reducer;

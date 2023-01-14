@@ -11,7 +11,7 @@ function createWindow() {
 	});
 
 	//load the index.html from a url
-	win.loadURL("http://joe-suse:3000");
+	win.loadURL("localhost:3000");
 
 	// Open the DevTools.
 	win.webContents.openDevTools();

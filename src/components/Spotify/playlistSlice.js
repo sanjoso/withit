@@ -23,8 +23,9 @@ export const fetchPlaylist = createAsyncThunk(
 const slice = {
 	name: "playlist",
 	initialState: {
-		playlist: { artworkPlaceholder },
+		artwork: { artworkPlaceholder },
 		tracks: [],
+		name: "",
 		isLoading: false,
 		hasError: false,
 	},
@@ -37,8 +38,9 @@ const slice = {
 		[fetchPlaylist.fulfilled]: (state, action) => {
 			state.isLoading = false;
 			state.hasError = false;
-			state.playlist = action.payload.images[0];
+			state.artwork = action.payload.images[0];
 			state.tracks = action.payload.tracks.items;
+			state.name = action.payload.name;
 		},
 		[fetchPlaylist.rejected]: (state, action) => {
 			state.isLoading = false;
@@ -49,6 +51,7 @@ const slice = {
 
 const playlistSlice = createSlice(slice);
 
-export const selectPlaylist = (state) => state.playlist.playlist;
+export const selectArtwork = (state) => state.playlist.artwork;
 export const selectTracks = (state) => state.playlist.tracks;
+export const selectName = (state) => state.playlist.name;
 export default playlistSlice.reducer;

@@ -1,31 +1,33 @@
-import playbutton from "./img/playbutton.svg";
-import likebutton from "./img/likebutton.svg";
+import playicon from "./img/play.png";
+import likeicon from "./img/like.png";
+import albumicon from "./img/album.png";
 
 const { format } = require("date-fns");
 
 export const SpotifyTrack = (props) => {
 	const track = props.track;
-	const trackNumber = props.number;
+	const number = props.number;
 
-	function duration(millis) {
-		let minutes = Math.floor(millis / 60000);
-		let seconds = ((millis % 60000) / 1000).toFixed(0);
-		return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
-	}
-
-	function formatTrackNum(trackNumber) {
-		let realNum = trackNumber + 1;
+	function trackNum() {
+		let realNum = number + 1;
 		if (realNum < 10) {
-			return `0${realNum}`;
+			realNum = `0${realNum}`;
 		}
 		return realNum;
 	}
 
 	return (
 		<div className="spotifytrack">
-			<div className="spotifytrack__number">{formatTrackNum(trackNumber)}</div>
-			<div className="spotifytrack__artwork">
+			<div className="spotifytrack__number">{trackNum()}</div>
+			<div className={"spotifytrack__artwork"}>
 				<img src={track.track.album.images[0].url} alt="" />
+				{track.track.album.album_type !== "single" ? (
+					<div className="spotifytrack__albumicon">
+						<img src={albumicon} alt="" />
+					</div>
+				) : (
+					""
+				)}
 			</div>
 			<div className="spotifytrack__title">{track.track.name}</div>
 			<div className="spotifytrack__artist">
@@ -36,14 +38,15 @@ export const SpotifyTrack = (props) => {
 			<div className="spotifytrack__date">
 				{format(new Date(track.added_at.substring(0, 10)), "MMM d")}
 			</div>
-			<div className="spotifytrack__duration">
-				{duration(track.track.duration_ms)}
-			</div>
 			<div className="spotifytrack__play">
-				<img src={playbutton} alt="" />
+				<a href={track.track.uri}>
+					<img src={playicon} alt="" />
+				</a>
 			</div>
 			<div className="spotifytrack__like">
-				<img src={likebutton} alt="" />
+				<a href={track.track.uri}>
+					<img src={likeicon} alt="" />
+				</a>
 			</div>
 		</div>
 	);

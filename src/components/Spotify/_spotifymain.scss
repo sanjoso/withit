@@ -1,8 +1,31 @@
 #spotifymain {
-	width: 100%;
-	height: 610px;
+	width: 90%;
+	height: 316px;
 	display: grid;
-	grid-template-areas: "spotifyartwork spotifytracks";
+	grid-template-areas: "artwork tracks";
+	grid-template-columns: 219px 596px;
+
+	&__artwork {
+		grid-area: artwork;
+		width: 219px;
+		height: calc(316px - 44px);
+		padding-left: 24px;
+		color: $darkgray;
+		font-family: "Ubuntu Medium";
+		font-size: 1.125rem;
+		img {
+			width: 195px;
+			height: 195px;
+			border-radius: 10px;
+		}
+	}
+
+	&__tracks {
+		grid-area: tracks;
+		width: 596px;
+		height: calc(316px - 44px);
+		overflow: scroll;
+	}
 
 	&__popup {
 		width: 250px;

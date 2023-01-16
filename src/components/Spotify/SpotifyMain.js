@@ -1,12 +1,18 @@
-import { fetchPlaylist, selectPlaylist, selectTracks } from "./playlistSlice";
+import {
+	fetchPlaylist,
+	selectArtwork,
+	selectTracks,
+	selectName,
+} from "./playlistSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { SpotifyTrack } from "./SpotifyTrack";
 
 export const SpotifyMain = (props) => {
 	const dispatch = useDispatch();
-	const playlist = useSelector(selectPlaylist);
+	const artwork = useSelector(selectArtwork);
 	const tracks = useSelector(selectTracks);
+	const name = useSelector(selectName);
 
 	useEffect(() => {
 		dispatch(fetchPlaylist());
@@ -14,11 +20,16 @@ export const SpotifyMain = (props) => {
 
 	return (
 		<div id="spotifymain">
-			{tracks.map((track, index) => {
-				return <SpotifyTrack track={track} key={index} number={index} />;
-			})}
+			<div id="spotifymain__artwork">
+				<img src={artwork.url} alt="" />
+				{name}
+			</div>
 
-			<img src={playlist.url} alt="" />
+			<div id="spotifymain__tracks">
+				{tracks.map((track, index) => {
+					return <SpotifyTrack track={track} key={index} number={index} />;
+				})}
+			</div>
 		</div>
 	);
 };

@@ -1,10 +1,8 @@
 import trashCan from "./img/delete.png";
 import { useState } from "react";
 
-// need to bring in some sort of prop saying what platform we are searching. Maybe declare a state in each component that is past as props to this one.s
-
 export const SpotifyPopup = (props) => {
-	const [searchQuery, setSearchQuery] = useState("Search (network)");
+	const [searchQuery, setSearchQuery] = useState("Search Spotify");
 
 	function handleChange(event) {
 		setSearchQuery(event.target.value);

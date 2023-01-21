@@ -1,6 +1,6 @@
 // Variable Declarations
 const clientId = "2d09b6bfda8f4f56879497f5f7358b0f";
-const redirect_uri = "http://localhost:3000/callback";
+const redirect_uri = "http://joe-suse:3000/callback";
 const scopes = [
 	"playlist-read-private",
 	"playlist-read-collaborative",
@@ -31,6 +31,7 @@ export const getSpotifyToken = () => {
 	}
 };
 
+// As of 1-16-2023 I don't think this is used anymore. It's in playlistSlice as a thunk
 export const getPlaylistItems = () => {
 	let token = window.localStorage.getItem("spotifyToken");
 	const playlistId = "6Hq9wYRY3xs8p5SiIUc1Gw";
@@ -51,3 +52,5 @@ export const getPlaylistItems = () => {
 			console.log(jsonResponse);
 		});
 };
+
+export const readJson = () => {};

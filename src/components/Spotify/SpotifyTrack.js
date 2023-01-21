@@ -30,11 +30,7 @@ export const SpotifyTrack = (props) => {
 				)}
 			</div>
 			<div className="spotifytrack__title">{track.track.name}</div>
-			<div className="spotifytrack__artist">
-				{track.track.artists[0].name} -{" "}
-				{track.track.album.album_type.charAt(0).toUpperCase() +
-					track.track.album.album_type.slice(1)}
-			</div>
+			<div className="spotifytrack__artist">{track.track.artists[0].name}</div>
 			<div className="spotifytrack__date">
 				{format(new Date(track.added_at.substring(0, 10)), "MMM d")}
 			</div>

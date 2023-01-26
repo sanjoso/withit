@@ -1,45 +1,89 @@
-.popup {
-	width: 250px;
-	height: 205px;
+.spotifypopup {
+	width: 350px;
+	height: 330px;
 	position: absolute;
-	top: 0;
-	left: 1.5625rem;
-	background-color: #ffffff;
+	top: 55.2%;
+	left: 29.8%;
+	background-color: $white;
 	border-radius: 15px;
-	box-shadow: 0px 4px 4px black;
+	box-shadow: 0px 0px 20px $lightgray;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 8%;
+		// margin-top: -25px; // adjust position, arrow has a height of 30px.
+		right: -28px;
+		border: solid 15px transparent;
+		border-left-color: $white;
+	}
+
+	&__title {
+		margin: 0;
+		padding-top: 20px;
+		padding-left: 16px;
+		font-size: 1.125rem;
+		font-family: "Ubuntu Bold";
+		color: $darkgray;
+		text-align: center;
+	}
 
 	&__searchbar {
 		&__search {
-			padding-top: 28px;
+			padding-top: 15px;
 			display: flex;
 			justify-content: center;
 			input {
-				height: 28px;
+				width: 250px;
+				height: 35px;
 				padding-left: 8px;
-				background-color: $searchpopupsearchbg;
-				border: 0;
-				border-radius: 5px;
-				color: $searchpopupsearchtext;
-				font-family: "Inter SemiBold";
-				font-size: 0.75rem;
+				background-color: $white;
+				border: 1px solid $border;
+				border-radius: 10px;
+				color: $lightgray;
+				font-family: "Ubuntu Medium";
+				font-size: 0.875rem;
+			}
+			input:focus {
+				background-color: #ebeff7;
+				border: 1px solid #8a33f4;
+				color: $black;
+				outline: none;
 			}
 		}
 	}
 
 	&__subscriptionscontainer {
-		display: grid;
-		grid-template-columns: 80% 20%;
-		align-items: center;
-		p {
-			padding-left: 28px;
-			grid-column-start: 1;
-			color: $textdark;
-			font-family: "Nunito Medium";
-			font-size: 0.875rem;
-		}
-		img {
-			margin-right: auto;
-			grid-column-start: 2;
+		width: 250px;
+		margin: 0 auto;
+		padding-top: 8px;
+
+		ul {
+			width: 250px;
+			margin: 0;
+			padding: 0;
+			list-style-type: none;
+
+			li {
+				margin: 0;
+				padding: 0;
+				display: grid;
+				grid-template-columns: 90% 10%;
+				align-items: center;
+			}
+
+			p {
+				margin: 5px;
+				grid-column-start: 1;
+				color: $darkgray;
+				font-family: "Ubuntu Medium";
+				font-size: 1rem;
+			}
+			img {
+				justify-self: end;
+				margin-right: auto;
+				grid-column-start: 2;
+			}
 		}
 	}
 }

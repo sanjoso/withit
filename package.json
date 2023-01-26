@@ -16,7 +16,6 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1",
     "redux": "^4.2.0",
-    "spotify-web-api-js": "^1.5.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -24,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron-dev": "electron ."
+    "electron": "electron ."
   },
   "eslintConfig": {
     "extends": [
@@ -45,7 +44,8 @@
     ]
   },
   "devDependencies": {
-    "electron": "^22.0.3",
-    "electron-is-dev": "^2.0.0"
+    "electron": "^22.1.0",
+    "electron-is-dev": "^2.0.0",
+    "electron-reloader": "^1.2.3"
   }
 }

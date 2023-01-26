@@ -8,15 +8,35 @@
 		justify-content: end;
 		h3 {
 			margin: 0;
-			padding: 0;
+			padding-right: 8px;
 			font-family: "Ubuntu Medium";
 			font-size: 1.125rem;
 			color: $mediumgray;
 		}
 		img {
-			padding-right: 8px;
+			padding-right: 0px;
 			height: 24px;
 			width: 24px;
+			cursor: pointer;
+		}
+	}
+
+	&__login {
+		height: 225px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&btn {
+			width: 350px;
+			height: 50px;
+			background-color: #1ed760;
+			border: none;
+			border-radius: 30px;
+			// color: #010000;
+			color: $darkgray;
+			font-family: "Ubuntu Bold";
+			font-size: 1rem;
 		}
 	}
 }

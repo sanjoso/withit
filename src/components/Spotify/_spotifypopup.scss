@@ -1,4 +1,4 @@
-.spotifypopup {
+#spotifypopup {
 	width: 350px;
 	height: 330px;
 	position: absolute;
@@ -7,6 +7,7 @@
 	background-color: $white;
 	border-radius: 15px;
 	box-shadow: 0px 0px 20px $lightgray;
+	z-index: 10;
 
 	&::before {
 		content: "";
@@ -50,6 +51,16 @@
 				color: $black;
 				outline: none;
 			}
+			&__clearicon {
+				width: 27px;
+				height: 27px;
+				position: absolute;
+				top: 63px;
+				left: 275px;
+				cursor: pointer;
+				opacity: 50%;
+				z-index: 11;
+			}
 		}
 	}
 
@@ -57,9 +68,12 @@
 		width: 250px;
 		margin: 0 auto;
 		padding-top: 8px;
+		overflow: hidden;
+		overflow-y: scroll;
 
 		ul {
 			width: 250px;
+			height: 225px;
 			margin: 0;
 			padding: 0;
 			list-style-type: none;
@@ -70,6 +84,7 @@
 				display: grid;
 				grid-template-columns: 90% 10%;
 				align-items: center;
+				cursor: pointer;
 			}
 
 			p {

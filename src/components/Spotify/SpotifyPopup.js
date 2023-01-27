@@ -4,22 +4,33 @@ import {
 	selectPlaylistResults,
 } from "./searchSlice";
 
-import checkmark from "./img/check.svg";
+//import checkmark from "./img/check.svg";
+import deleteicon from "./img/delete.png";
+import artisticon from "./img/artisticon.svg";
+import clearicon from "./img/x.svg";
+
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const readJSON = window.electron.readJSON;
 
 export const SpotifyPopup = (props) => {
 	const dispatch = useDispatch();
+	const playlistResults = useSelector(selectPlaylistResults);
+	const artistResults = useSelector(selectArtistResults);
 	const [searchQuery, setSearchQuery] = useState("Search Spotify...");
 	const [subscriptions, setSubscriptions] = useState("");
+	const [searchResults, setSearchResults] = useState(false);
 
 	useEffect(() => {
 		readJSON().then((response) => {
 			const subsParsed = JSON.parse(response);
-			setSubscriptions(subsParsed.items);
+			setSubscriptions(subsParsed);
 		});
-	}, []);
+
+		if (artistResults) {
+			setSearchResults(true);
+		}
+	}, [artistResults]);
 
 	function handleChange(event) {
 		setSearchQuery(event.target.value);
@@ -31,35 +42,58 @@ export const SpotifyPopup = (props) => {
 		}
 	}
 
-	function handleSubmit(event) {
-		setSearchQuery(event.target.value);
+	function handleClearClick() {
+		setSearchQuery("");
+		setSearchResults(false);
+	}
+
+	function handleSearchSubmit(event) {
+		event.preventDefault();
 		dispatch(fetchSearchResults(searchQuery));
 	}
 
 	return (
-		<div className="spotifypopup">
-			<div className="spotifypopup__title">Spotify</div>
-			<div className="spotifypopup_searchbar">
-				<div className="spotifypopup__searchbar__search">
-					<form onSubmit={handleSubmit}>
+		<div id="spotifypopup">
+			<div id="spotifypopup__title">Spotify</div>
+			<div id="spotifypopup_searchbar">
+				<div id="spotifypopup__searchbar__search">
+					<form onSubmit={handleSearchSubmit}>
 						<input
 							type="text"
 							value={searchQuery}
 							onChange={handleChange}
 							onClick={handleClick}
 						/>
+						<span>
+							<img
+								id="spotifypopup__searchbar__search__clearicon"
+								src={clearicon}
+								alt=""
+								onClick={handleClearClick}
+								style={{ display: searchQuery ? "block" : "none" }}
+							/>
+						</span>
 					</form>
 				</div>
-				<div className="spotifypopup__subscriptionscontainer">
+				<div id="spotifypopup__subscriptionscontainer">
 					<ul>
-						{Object.keys(subscriptions).map((key, index) => {
-							return (
-								<li key={index}>
-									<p>{key}</p>
-									<img src="" alt="" />
-								</li>
-							);
-						})}
+						{searchResults
+							? artistResults.map((key, index) => {
+									return (
+										<li key={index}>
+											<p>{key.name}</p>
+											<img src={deleteicon} alt="" />
+										</li>
+									);
+							  })
+							: Object.values(subscriptions).map((value, index) => {
+									return (
+										<li key={index}>
+											<p>{value.name}</p>
+											<img src={deleteicon} alt="" />
+										</li>
+									);
+							  })}
 					</ul>
 				</div>
 			</div>

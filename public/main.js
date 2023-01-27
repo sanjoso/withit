@@ -5,6 +5,10 @@ const os = require("os");
 const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const isDev = require("electron-is-dev");
 
+//Disables the menu bar
+const { Menu } = require("electron");
+Menu.setApplicationMenu(null);
+
 //The hot reloader module
 require("electron-reloader")(module);
 
@@ -71,7 +75,7 @@ app.on("activate", () => {
 ipcMain.handle("readJSON", async (event) => {
 	const homeDir = os.homedir();
 	const dir = `${homeDir}/withIt Files`;
-	const bufferData = await fs.readFileSync(`${dir}/BandView - Spotify.json`);
+	const bufferData = fs.readFileSync(`${dir}/BandView - Spotify.json`);
 	return bufferData.toString("utf8");
 });
 

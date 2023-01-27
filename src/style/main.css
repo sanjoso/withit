@@ -155,7 +155,7 @@ body {
   font-size: 1rem;
 }
 
-.spotifypopup {
+#spotifypopup {
   width: 350px;
   height: 330px;
   position: absolute;
@@ -164,8 +164,9 @@ body {
   background-color: #fff;
   border-radius: 15px;
   box-shadow: 0px 0px 20px #9ca3af;
+  z-index: 10;
 }
-.spotifypopup::before {
+#spotifypopup::before {
   content: "";
   position: absolute;
   top: 8%;
@@ -173,7 +174,7 @@ body {
   border: solid 15px transparent;
   border-left-color: #fff;
 }
-.spotifypopup__title {
+#spotifypopup__title {
   margin: 0;
   padding-top: 20px;
   padding-left: 16px;
@@ -182,12 +183,12 @@ body {
   color: #374151;
   text-align: center;
 }
-.spotifypopup__searchbar__search {
+#spotifypopup__searchbar__search {
   padding-top: 15px;
   display: flex;
   justify-content: center;
 }
-.spotifypopup__searchbar__search input {
+#spotifypopup__searchbar__search input {
   width: 250px;
   height: 35px;
   padding-left: 8px;
@@ -198,38 +199,52 @@ body {
   font-family: "Ubuntu Medium";
   font-size: 0.875rem;
 }
-.spotifypopup__searchbar__search input:focus {
+#spotifypopup__searchbar__search input:focus {
   background-color: #ebeff7;
   border: 1px solid #8a33f4;
   color: #1f2937;
   outline: none;
 }
-.spotifypopup__subscriptionscontainer {
+#spotifypopup__searchbar__search__clearicon {
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  top: 63px;
+  left: 275px;
+  cursor: pointer;
+  opacity: 50%;
+  z-index: 11;
+}
+#spotifypopup__subscriptionscontainer {
   width: 250px;
   margin: 0 auto;
   padding-top: 8px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
-.spotifypopup__subscriptionscontainer ul {
+#spotifypopup__subscriptionscontainer ul {
   width: 250px;
+  height: 225px;
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
-.spotifypopup__subscriptionscontainer ul li {
+#spotifypopup__subscriptionscontainer ul li {
   margin: 0;
   padding: 0;
   display: grid;
   grid-template-columns: 90% 10%;
   align-items: center;
+  cursor: pointer;
 }
-.spotifypopup__subscriptionscontainer ul p {
+#spotifypopup__subscriptionscontainer ul p {
   margin: 5px;
   grid-column-start: 1;
   color: #374151;
   font-family: "Ubuntu Medium";
   font-size: 1rem;
 }
-.spotifypopup__subscriptionscontainer ul img {
+#spotifypopup__subscriptionscontainer ul img {
   justify-self: end;
   margin-right: auto;
   grid-column-start: 2;

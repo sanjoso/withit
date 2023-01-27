@@ -35,8 +35,8 @@ const slice = {
 		[fetchSearchResults.fulfilled]: (state, action) => {
 			state.isLoading = false;
 			state.hasError = false;
-			state.artists = action.payload.artists;
-			state.playlists = action.payload.playlists;
+			state.artists = action.payload.artists.items;
+			state.playlists = action.payload.playlists.items;
 		},
 		[fetchSearchResults.rejected]: (state, action) => {
 			state.isLoading = false;
@@ -47,6 +47,6 @@ const slice = {
 
 const searchSlice = createSlice(slice);
 
-export const selectArtistResults = (state) => state.playlist.artists;
-export const selectPlaylistResults = (state) => state.playlist.playlists;
+export const selectArtistResults = (state) => state.search.artists;
+export const selectPlaylistResults = (state) => state.search.playlists;
 export default searchSlice.reducer;

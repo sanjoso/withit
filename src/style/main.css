@@ -174,34 +174,23 @@ body {
   border: solid 15px transparent;
   border-left-color: #fff;
 }
-#spotifypopup__title {
-  margin: 0;
-  padding-top: 20px;
-  padding-left: 16px;
-  font-size: 1.125rem;
-  font-family: "Ubuntu Bold";
-  color: #374151;
-  text-align: center;
-}
 #spotifypopup__searchbar__search {
-  padding-top: 15px;
-  display: flex;
-  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #d9d9d9;
 }
 #spotifypopup__searchbar__search input {
   width: 250px;
   height: 35px;
   padding-left: 8px;
   background-color: #fff;
-  border: 1px solid #d9d9d9;
+  border: none;
   border-radius: 10px;
-  color: #9ca3af;
+  color: #6b7280;
   font-family: "Ubuntu Medium";
-  font-size: 0.875rem;
+  font-size: 1rem;
 }
 #spotifypopup__searchbar__search input:focus {
-  background-color: #ebeff7;
-  border: 1px solid #8a33f4;
   color: #1f2937;
   outline: none;
 }
@@ -209,18 +198,22 @@ body {
   width: 27px;
   height: 27px;
   position: absolute;
-  top: 63px;
-  left: 275px;
+  top: 16px;
+  left: 310px;
   cursor: pointer;
   opacity: 50%;
   z-index: 11;
 }
 #spotifypopup__subscriptionscontainer {
-  width: 250px;
+  width: 275px;
   margin: 0 auto;
   padding-top: 8px;
   overflow: hidden;
   overflow-y: scroll;
+}
+#spotifypopup__subscriptionscontainer::-webkit-scrollbar {
+  width: 0px;
+  display: none;
 }
 #spotifypopup__subscriptionscontainer ul {
   width: 250px;
@@ -233,21 +226,60 @@ body {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 90% 10%;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-areas: "icon title toggle";
   align-items: center;
   cursor: pointer;
 }
 #spotifypopup__subscriptionscontainer ul p {
+  grid-area: title;
   margin: 5px;
-  grid-column-start: 1;
   color: #374151;
   font-family: "Ubuntu Medium";
   font-size: 1rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 #spotifypopup__subscriptionscontainer ul img {
-  justify-self: end;
-  margin-right: auto;
-  grid-column-start: 2;
+  grid-area: icon;
+  height: 20px;
+  width: 20px;
+  grid-column-start: 1;
+}
+#spotifypopup__subscriptionscontainer ul input[type=checkbox] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+#spotifypopup__subscriptionscontainer ul label {
+  grid-area: toggle;
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 35px;
+  height: 20px;
+  background: #6b7280;
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+#spotifypopup__subscriptionscontainer ul label:after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+#spotifypopup__subscriptionscontainer ul input:checked + label {
+  background: #8a33f4;
+}
+#spotifypopup__subscriptionscontainer ul input:checked + label:after {
+  left: 100%;
+  transform: translateX(-100%);
 }
 
 #spotifymain {

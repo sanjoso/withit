@@ -5,7 +5,7 @@ import {
 	selectName,
 } from "./playlistSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { SpotifyTrack } from "./SpotifyTrack";
 
 export const SpotifyMain = (props) => {

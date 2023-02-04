@@ -34,7 +34,7 @@ function createWindow() {
 
 	// Open the DevTools.
 	if (isDev) {
-		win.webContents.openDevTools({ mode: "detach" });
+		win.webContents.openDevTools({ mode: "right" });
 	}
 
 	//check for the folder of JSON files

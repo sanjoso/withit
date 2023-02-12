@@ -1,4 +1,4 @@
-import artworkPlaceholder from "./img/artworkplaceholder.png";
+import artworkPlaceholder from "../img/artworkplaceholder.png";
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
@@ -51,7 +51,7 @@ const slice = {
 
 const playlistSlice = createSlice(slice);
 
-export const selectArtwork = (state) => state.playlist.artwork;
-export const selectTracks = (state) => state.playlist.tracks;
-export const selectName = (state) => state.playlist.name;
+export const selectPlaylistArtwork = (state) => state.playlist.artwork;
+export const selectPlaylistTracks = (state) => state.playlist.tracks;
+export const selectPlaylistName = (state) => state.playlist.name;
 export default playlistSlice.reducer;

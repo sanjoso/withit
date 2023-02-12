@@ -75,14 +75,19 @@ app.on("activate", () => {
 ipcMain.handle("readJSON", async (event) => {
 	const homeDir = os.homedir();
 	const dir = `${homeDir}/withIt Files`;
-	const bufferData = fs.readFileSync(`${dir}/BandView - Spotify.json`);
-	return bufferData.toString("utf8");
+	if (fs.existsSync(`${dir}/BandViewSpotify.json`)) {
+		const bufferData = fs.readFileSync(`${dir}/BandViewSpotify.json`);
+		return bufferData.toString("utf8");
+	} else {
+		fs.writeFileSync(`${dir}/BandViewSpotify.json`, []);
+		return [];
+	}
 });
 
 ipcMain.on("writeJSON", (event, data) => {
 	const homeDir = os.homedir();
 	const dir = `${homeDir}/withIt Files`;
-	fs.writeFileSync(`${dir}/BandView - Spotify.json`, data);
+	fs.writeFileSync(`${dir}/BandViewSpotify.json`, data);
 	console.log("File written successfuly");
 });
 

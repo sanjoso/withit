@@ -3,7 +3,7 @@ import {
 	fetchSearchResults,
 	selectArtistResults,
 	selectPlaylistResults,
-} from "./searchSlice";
+} from "./redux/searchSlice";
 
 // Icon imports
 import clearicon from "./img/x.svg";

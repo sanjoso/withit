@@ -24,8 +24,8 @@ body {
 @import "colors";
 @import "../components/Sidebar/sidebar";
 @import "../components/BandView/bandview";
-@import "../components/Spotify/spotifycontainer";
-@import "../components/Spotify/spotifypopup";
-@import "../components/Spotify/spotifymain";
-@import "../components/Spotify/spotifyartwork";
-@import "../components/Spotify/spotifytrack";
+@import "../components/Spotify/sass/spotifycontainer";
+@import "../components/Spotify/sass/spotifypopup";
+@import "../components/Spotify/sass/spotifymain";
+@import "../components/Spotify/sass/spotifyartwork";
+@import "../components/Spotify/sass/spotifytrack";

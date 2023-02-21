@@ -79,7 +79,7 @@ ipcMain.handle("readJSON", async (event) => {
 		const bufferData = fs.readFileSync(`${dir}/BandViewSpotify.json`);
 		return bufferData.toString("utf8");
 	} else {
-		fs.writeFileSync(`${dir}/BandViewSpotify.json`, []);
+		fs.writeFileSync(`${dir}/BandViewSpotify.json`, "[]");
 		return [];
 	}
 });

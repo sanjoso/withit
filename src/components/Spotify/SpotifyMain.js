@@ -16,7 +16,7 @@ export const SpotifyMain = (props) => {
 	const name = useSelector(selectPlaylistName);
 
 	useEffect(() => {
-		dispatch(fetchArtist("58r1rB5t3VF5X6yXGPequV"));
+		dispatch(fetchArtist("3YCKuqpv9nCsIhJ2v8SMix"));
 	}, [dispatch]);
 
 	return (

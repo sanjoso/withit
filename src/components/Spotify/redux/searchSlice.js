@@ -6,7 +6,7 @@ export const fetchSearchResults = createAsyncThunk(
 		const token = window.localStorage.getItem("spotifyToken");
 		const headers = { Authorization: `Bearer ${token}` };
 		const type = "artist%2Cplaylist";
-		const endpoint = ` 	https://api.spotify.com/v1/search?q=${searchQuery}&type=${type}&market=ES&limit=10&offset=0`;
+		const endpoint = ` 	https://api.spotify.com/v1/search?q=${searchQuery}&type=${type}&market=ES&limit=20&offset=0`;
 
 		try {
 			const response = await fetch(`${endpoint}`, { headers: headers });

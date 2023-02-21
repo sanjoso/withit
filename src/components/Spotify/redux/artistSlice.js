@@ -4,8 +4,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchArtist = createAsyncThunk(
 	"artist/fetchArtist",
-	async (artistId) => {
+	async (uri) => {
 		const token = window.localStorage.getItem("spotifyToken");
+		const artistId = uri.replace("spotify:artist:", "");
 		const headers = { Authorization: `Bearer ${token}` };
 		const artistEndpoint = `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=single%2Cappears_on&limit=3`;
 

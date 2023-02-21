@@ -4,9 +4,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchPlaylist = createAsyncThunk(
 	"playlist/fetchPlaylist",
-	async () => {
+	async (uri) => {
 		const token = window.localStorage.getItem("spotifyToken");
-		const playlistId = "6Hq9wYRY3xs8p5SiIUc1Gw";
+		const playlistId = uri.replace("spotify:playlist:", "");
 		const headers = { Authorization: `Bearer ${token}` };
 		const endpoint = `https://api.spotify.com/v1/playlists/${playlistId}`;
 

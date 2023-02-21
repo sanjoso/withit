@@ -156,8 +156,8 @@ body {
 }
 
 #spotifypopup {
-  width: 350px;
-  height: 330px;
+  width: 500px;
+  height: 300px;
   position: absolute;
   top: 55.2%;
   left: 29.8%;
@@ -177,21 +177,23 @@ body {
 #spotifypopup__searchbar__search {
   padding-top: 10px;
   padding-bottom: 5px;
+  background-color: #8a33f4;
   border-bottom: 1px solid #d9d9d9;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 #spotifypopup__searchbar__search input {
   width: 250px;
   height: 35px;
   padding-left: 8px;
-  background-color: #fff;
+  background-color: #8a33f4;
   border: none;
   border-radius: 10px;
-  color: #6b7280;
+  color: #fff;
   font-family: "Ubuntu Medium";
   font-size: 1rem;
 }
 #spotifypopup__searchbar__search input:focus {
-  color: #1f2937;
   outline: none;
 }
 #spotifypopup__searchbar__search__clearicon {
@@ -199,13 +201,12 @@ body {
   height: 27px;
   position: absolute;
   top: 16px;
-  left: 310px;
+  left: 470px;
   cursor: pointer;
-  opacity: 50%;
   z-index: 11;
 }
 #spotifypopup__subscriptionscontainer {
-  width: 275px;
+  width: 475px;
   margin: 0 auto;
   padding-top: 8px;
   overflow: hidden;
@@ -216,8 +217,8 @@ body {
   display: none;
 }
 #spotifypopup__subscriptionscontainer ul {
-  width: 250px;
-  height: 225px;
+  width: 450px;
+  height: 230px;
   margin: 0;
   padding: 0;
   list-style-type: none;

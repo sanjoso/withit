@@ -4,9 +4,10 @@ import {
 	selectArtistResults,
 	selectPlaylistResults,
 } from "./redux/searchSlice";
+import { chooseSubscription } from "./redux/choiceSlice";
 
 // Icon imports
-import clearicon from "./img/x.svg";
+import clearicon from "./img/xWHITE.svg";
 import artisticon from "./img/artisticon.svg";
 import playlisticon from "./img/playlisticon.svg";
 
@@ -50,6 +51,11 @@ export const SpotifyPopup = (props) => {
 		}
 	}, [artistResults, playlistResults]);
 
+	// What to do when a sub is clicked
+	function handleSelect(uri, type) {
+		dispatch(chooseSubscription([uri, type]));
+	}
+
 	// Search input functions
 	function handleSearchChange(event) {
 		setSearchQuery(event.target.value);
@@ -62,7 +68,7 @@ export const SpotifyPopup = (props) => {
 			setSearchQuery("");
 		}
 	}
-	function handleSearchClearClick() {
+	function handleSearchClearClick(event) {
 		setSearchQuery("Search Spotify...");
 		setSearchResultsExist(false);
 	}
@@ -134,48 +140,49 @@ export const SpotifyPopup = (props) => {
 						</span>
 					</form>
 				</div>
-				<div id="spotifypopup__subscriptionscontainer">
-					<ul>
-						{searchResultsExist
-							? searchResults.map((key) => {
-									return (
-										<li key={key.uri}>
-											<p>{key.name}</p>
-											<img
-												src={key.type === "artist" ? artisticon : playlisticon}
-												alt=""
-											/>
-											<input
-												type="checkbox"
-												id={key.name}
-												onChange={handleToggle}
-											/>
-											<label htmlFor={key.name}>Toggle</label>
-										</li>
-									);
-							  })
-							: Object.values(subscriptions).map((value) => {
-									return (
-										<li key={value.uri}>
-											<p>{value.name}</p>
-											<img
-												src={
-													value.type === "artist" ? artisticon : playlisticon
-												}
-												alt=""
-											/>
+			</div>
+			<div id="spotifypopup__subscriptionscontainer">
+				<ul>
+					{searchResultsExist
+						? searchResults.map((key) => {
+								return (
+									<li key={key.uri}>
+										<p>{key.name}</p>
+										<img
+											src={key.type === "artist" ? artisticon : playlisticon}
+											alt=""
+										/>
+										<input
+											type="checkbox"
+											id={key.name}
+											onChange={handleToggle}
+										/>
+										<label htmlFor={key.name}>Toggle</label>
+									</li>
+								);
+						  })
+						: Object.values(subscriptions).map((value) => {
+								return (
+									<li
+										key={value.uri}
+										onClick={() => handleSelect(value.uri, value.type)}
+									>
+										<p>{value.name}</p>
+										<img
+											src={value.type === "artist" ? artisticon : playlisticon}
+											alt=""
+										/>
 
-											<input
-												type="checkbox"
-												id={value.name}
-												onChange={handleToggle}
-											/>
-											<label htmlFor={value.name}>Toggle</label>
-										</li>
-									);
-							  })}
-					</ul>
-				</div>
+										<input
+											type="checkbox"
+											id={value.name}
+											onChange={handleToggle}
+										/>
+										<label htmlFor={value.name}>Toggle</label>
+									</li>
+								);
+						  })}
+				</ul>
 			</div>
 		</div>
 	);

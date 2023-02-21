@@ -1,6 +1,6 @@
 #spotifypopup {
-	width: 350px;
-	height: 330px;
+	width: 500px;
+	height: 300px;
 	position: absolute;
 	top: 55.2%;
 	left: 29.8%;
@@ -23,24 +23,22 @@
 		&__search {
 			padding-top: 10px;
 			padding-bottom: 5px;
-			// display: flex;
-			// justify-content: center;
+			background-color: $purple;
 			border-bottom: 1px solid $border;
+			border-top-left-radius: 15px;
+			border-top-right-radius: 15px;
 			input {
 				width: 250px;
 				height: 35px;
 				padding-left: 8px;
-				background-color: $white;
+				background-color: $purple;
 				border: none;
 				border-radius: 10px;
-				color: $mediumgray;
+				color: $white;
 				font-family: "Ubuntu Medium";
 				font-size: 1rem;
 			}
 			input:focus {
-				//background-color: #ebeff7;
-				//border: 1px solid #8a33f4;
-				color: $black;
 				outline: none;
 			}
 			&__clearicon {
@@ -48,16 +46,15 @@
 				height: 27px;
 				position: absolute;
 				top: 16px;
-				left: 310px;
+				left: 470px;
 				cursor: pointer;
-				opacity: 50%;
 				z-index: 11;
 			}
 		}
 	}
 
 	&__subscriptionscontainer {
-		width: 275px;
+		width: 475px;
 		margin: 0 auto;
 		padding-top: 8px;
 		overflow: hidden;
@@ -68,8 +65,8 @@
 		}
 
 		ul {
-			width: 250px;
-			height: 225px;
+			width: 450px;
+			height: 230px;
 			margin: 0;
 			padding: 0;
 			list-style-type: none;

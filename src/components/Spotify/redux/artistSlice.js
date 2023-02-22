@@ -8,13 +8,21 @@ export const fetchArtist = createAsyncThunk(
 		const token = window.localStorage.getItem("spotifyToken");
 		const artistId = uri.replace("spotify:artist:", "");
 		const headers = { Authorization: `Bearer ${token}` };
-		const artistEndpoint = `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=single%2Cappears_on&limit=3`;
+		const albumEndpoint = `https://api.spotify.com/v1/artists/${artistId}/albums?include_groups=single%2Cappears_on&limit=5`;
+		const artistEndpoint = `https://api.spotify.com/v1/artists/${artistId}`;
 
 		try {
 			let albumsArray = [];
 			let tracksArray = [];
+
+			// Get the artist image, to display it on SpotifyMain
+			const artistResponse = await fetch(`${artistEndpoint}`, {
+				headers: headers,
+			});
+			const jsonArtistResponse = await artistResponse.json();
+			const artistImage = { artistImage: jsonArtistResponse.images[0].url };
 			// Initial album fetch (fetches most recent 3)
-			const albumResponse = await fetch(`${artistEndpoint}`, {
+			const albumResponse = await fetch(`${albumEndpoint}`, {
 				headers: headers,
 			});
 			const jsonAlbumResponse = await albumResponse.json();
@@ -29,23 +37,25 @@ export const fetchArtist = createAsyncThunk(
 				});
 			});
 			// Now, search Spotify for album tracks
-
-			albumsArray.map(async function (album) {
-				const tracksResponse = await fetch(
-					`https://api.spotify.com/v1/albums/${album.id}/tracks`,
-					{ headers: headers }
-				);
-				const jsonTracksResponse = await tracksResponse.json();
-				Object.values(jsonTracksResponse.items).forEach((val) => {
-					tracksArray.push({
-						name: val.name,
-						uri: val.uri,
-						releaseDate: album.releaseDate,
-						artwork: album.artwork,
-						artist: album.artist,
+			await Promise.all(
+				albumsArray.map(async function (album) {
+					const tracksResponse = await fetch(
+						`https://api.spotify.com/v1/albums/${album.id}/tracks`,
+						{ headers: headers }
+					);
+					const jsonTracksResponse = await tracksResponse.json();
+					Object.values(jsonTracksResponse.items).forEach((val) => {
+						tracksArray.push({
+							name: val.name,
+							uri: val.uri,
+							releaseDate: album.releaseDate,
+							artwork: album.artwork,
+							artist: album.artist,
+						});
 					});
-				});
-			});
+				})
+			);
+			tracksArray.push(artistImage);
 			return tracksArray;
 		} catch (error) {
 			console.log(error);
@@ -56,8 +66,9 @@ export const fetchArtist = createAsyncThunk(
 const slice = {
 	name: "artist",
 	initialState: {
-		artwork: { artworkPlaceholder },
-		tracks: [],
+		artwork: artworkPlaceholder,
+		artistImage: "",
+		results: [],
 		name: "",
 		isLoading: false,
 		hasError: false,
@@ -71,8 +82,10 @@ const slice = {
 		[fetchArtist.fulfilled]: (state, action) => {
 			state.isLoading = false;
 			state.hasError = false;
-			console.log(action.payload);
-			state.tracks = [...action.payload];
+			state.results = action.payload.slice(0, -1);
+			state.artwork = action.payload[0].artwork;
+			state.artistImage = action.payload.at(-1).artistImage;
+			state.name = action.payload[0].artist;
 		},
 		[fetchArtist.rejected]: (state, action) => {
 			state.isLoading = false;
@@ -83,7 +96,7 @@ const slice = {
 
 const artistSlice = createSlice(slice);
 
-export const selectArtistArtwork = (state) => state.playlist.artwork;
-export const selectArtistTracks = (state) => state.playlist.tracks;
-export const selectArtistName = (state) => state.playlist.name;
+export const selectArtistResults = (state) => state.artist.results;
+export const selectArtistArtwork = (state) => state.artist.artistImage;
+export const selectArtistName = (state) => state.artist.name;
 export default artistSlice.reducer;

@@ -376,7 +376,7 @@ body {
   color: #374151;
 }
 
-.spotifytrack {
+.playlisttrack {
   padding-bottom: 1px;
   display: grid;
   grid-template-areas: "number artwork title title play like" "number artwork artist date play like";
@@ -384,7 +384,7 @@ body {
   justify-content: center;
   align-content: center;
 }
-.spotifytrack__number {
+.playlisttrack__number {
   grid-area: number;
   justify-self: center;
   align-self: center;
@@ -392,28 +392,28 @@ body {
   font-family: "Ubuntu Bold";
   font-size: 1.25rem;
 }
-.spotifytrack__number {
+.playlisttrack__number {
   grid-area: number;
   font-family: "Ubuntu Bold";
   font-size: 1.5rem;
   color: #9ca3af;
 }
-.spotifytrack__artwork {
+.playlisttrack__artwork {
   position: relative;
   grid-area: artwork;
   justify-self: start;
 }
-.spotifytrack__artwork img {
+.playlisttrack__artwork img {
   height: 45px;
   width: 45px;
   border-radius: 10px;
 }
-.spotifytrack__albumicon {
+.playlisttrack__albumicon {
   display: flex;
   justify-content: end;
   align-items: flex-end;
 }
-.spotifytrack__albumicon img {
+.playlisttrack__albumicon img {
   position: absolute;
   width: 21px;
   height: 21px;
@@ -421,28 +421,28 @@ body {
   filter: drop-shadow(4px 4px 5px #374151);
   z-index: 1;
 }
-.spotifytrack__title {
+.playlisttrack__title {
   grid-area: title;
   color: #374151;
   font-family: "Ubuntu Medium";
   font-size: 1rem;
   justify-self: start;
 }
-.spotifytrack__artist {
+.playlisttrack__artist {
   grid-area: artist;
   color: #6b7280;
   font-family: "Ubuntu Regular";
   font-size: 0.75rem;
   justify-self: start;
 }
-.spotifytrack__date {
+.playlisttrack__date {
   grid-area: date;
   color: #6b7280;
   font-family: "Ubuntu Regular";
   font-size: 0.75rem;
   justify-self: center;
 }
-.spotifytrack__play {
+.playlisttrack__play {
   grid-area: play;
   width: 40px;
   height: 40px;
@@ -450,13 +450,13 @@ body {
   border-radius: 10px;
   justify-self: end;
 }
-.spotifytrack__play img {
+.playlisttrack__play img {
   margin: 0;
   padding: 0;
   width: 40px;
   height: 40px;
 }
-.spotifytrack__like {
+.playlisttrack__like {
   grid-area: like;
   display: flex;
   justify-content: center;
@@ -467,7 +467,104 @@ body {
   border: 0.5px solid #d9d9d9;
   border-radius: 10px;
 }
-.spotifytrack__like img {
+.playlisttrack__like img {
+  padding-top: 6px;
+  width: 25px;
+  height: 25px;
+}
+
+.artisttrack {
+  padding-bottom: 1px;
+  display: grid;
+  grid-template-areas: "number artwork title title play like" "number artwork artist date play like";
+  grid-template-columns: 1fr 1fr 2fr 2fr 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+}
+.artisttrack__number {
+  grid-area: number;
+  justify-self: center;
+  align-self: center;
+  color: #9ca3af;
+  font-family: "Ubuntu Bold";
+  font-size: 1.25rem;
+}
+.artisttrack__number {
+  grid-area: number;
+  font-family: "Ubuntu Bold";
+  font-size: 1.5rem;
+  color: #9ca3af;
+}
+.artisttrack__artwork {
+  position: relative;
+  grid-area: artwork;
+  justify-self: start;
+}
+.artisttrack__artwork img {
+  height: 45px;
+  width: 45px;
+  border-radius: 10px;
+}
+.artisttrack__albumicon {
+  display: flex;
+  justify-content: end;
+  align-items: flex-end;
+}
+.artisttrack__albumicon img {
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  padding-bottom: 5px;
+  filter: drop-shadow(4px 4px 5px #374151);
+  z-index: 1;
+}
+.artisttrack__title {
+  grid-area: title;
+  color: #374151;
+  font-family: "Ubuntu Medium";
+  font-size: 1rem;
+  justify-self: start;
+}
+.artisttrack__artist {
+  grid-area: artist;
+  color: #6b7280;
+  font-family: "Ubuntu Regular";
+  font-size: 0.75rem;
+  justify-self: start;
+}
+.artisttrack__date {
+  grid-area: date;
+  color: #6b7280;
+  font-family: "Ubuntu Regular";
+  font-size: 0.75rem;
+  justify-self: center;
+}
+.artisttrack__play {
+  grid-area: play;
+  width: 40px;
+  height: 40px;
+  border: 0.5px solid #d9d9d9;
+  border-radius: 10px;
+  justify-self: end;
+}
+.artisttrack__play img {
+  margin: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+.artisttrack__like {
+  grid-area: like;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  border: 0.5px solid #d9d9d9;
+  border-radius: 10px;
+}
+.artisttrack__like img {
   padding-top: 6px;
   width: 25px;
   height: 25px;

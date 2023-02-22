@@ -7,8 +7,8 @@ import {
 } from "./redux/playlistSlice";
 import {
 	fetchArtist,
+	selectArtistResults,
 	selectArtistArtwork,
-	selectArtistTracks,
 	selectArtistName,
 } from "./redux/artistSlice";
 import { selectChoice } from "./redux/choiceSlice";
@@ -18,7 +18,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 //Component imports
-import { SpotifyTrack } from "./SpotifyTrack";
+import { PlaylistTrack } from "./PlaylistTrack";
+import { ArtistTrack } from "./ArtistTrack";
 
 export const SpotifyMain = (props) => {
 	const dispatch = useDispatch();
@@ -26,8 +27,8 @@ export const SpotifyMain = (props) => {
 	const playlistArtwork = useSelector(selectPlaylistArtwork);
 	const playlistTracks = useSelector(selectPlaylistTracks);
 	const playlistName = useSelector(selectPlaylistName);
+	const artistResults = useSelector(selectArtistResults);
 	const artistArtwork = useSelector(selectArtistArtwork);
-	const artistTracks = useSelector(selectArtistTracks);
 	const artistName = useSelector(selectArtistName);
 
 	useEffect(() => {
@@ -42,9 +43,7 @@ export const SpotifyMain = (props) => {
 		<div id="spotifymain">
 			<div id="spotifymain__artwork">
 				<img
-					src={
-						choice[1] === "playlist" ? playlistArtwork.url : artistArtwork.url
-					}
+					src={choice[1] === "playlist" ? playlistArtwork.url : artistArtwork}
 					alt=""
 				/>
 				{choice[1] === "playlist" ? playlistName : artistName}
@@ -53,10 +52,10 @@ export const SpotifyMain = (props) => {
 			<div id="spotifymain__tracks">
 				{choice[1] === "playlist"
 					? playlistTracks.map((track, index) => {
-							return <SpotifyTrack track={track} key={index} number={index} />;
+							return <PlaylistTrack track={track} key={index} number={index} />;
 					  })
-					: artistTracks.map((track, index) => {
-							return <SpotifyTrack track={track} key={index} number={index} />;
+					: artistResults.map((track, index) => {
+							return <ArtistTrack track={track} key={index} number={index} />;
 					  })}
 			</div>
 		</div>

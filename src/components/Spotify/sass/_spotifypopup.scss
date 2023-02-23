@@ -1,54 +1,65 @@
 #spotifypopup {
 	width: 500px;
-	height: 300px;
+	height: 600px;
 	position: absolute;
-	top: 55.2%;
-	left: 29.8%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	background-color: $white;
 	border-radius: 15px;
 	box-shadow: 0px 0px 20px $lightgray;
 	z-index: 10;
 
-	&::before {
-		content: "";
-		position: absolute;
-		top: 8%;
-		// margin-top: -25px; // adjust position, arrow has a height of 30px.
-		right: -28px;
-		border: solid 15px transparent;
-		border-left-color: $white;
-	}
+	// Arrow CSS
+	// &::before {
+	// 	content: "";
+	// 	position: absolute;
+	// 	top: 5.4%;
+	// 	// margin-top: -25px; // adjust position, arrow has a height of 30px.
+	// 	right: -28px;
+	// 	border: solid 15px transparent;
+	// 	border-left-color: $purple;
+	// }
 
 	&__searchbar {
 		&__search {
-			padding-top: 10px;
-			padding-bottom: 5px;
-			background-color: $purple;
+			width: 100%;
+			height: 60px;
+			display: flex;
+			align-items: center;
+			background-color: $white;
 			border-bottom: 1px solid $border;
 			border-top-left-radius: 15px;
 			border-top-right-radius: 15px;
+			&__searchicon {
+				img {
+					width: 20px;
+					height: 20px;
+					padding-top: 3px;
+					padding-left: 8px;
+				}
+			}
 			input {
-				width: 250px;
-				height: 35px;
+				width: 425px;
+				height: 40px;
 				padding-left: 8px;
-				background-color: $purple;
+				background-color: $white;
 				border: none;
 				border-radius: 10px;
-				color: $white;
+				color: $darkgray;
 				font-family: "Ubuntu Medium";
-				font-size: 1rem;
+				font-size: 1.125rem;
 			}
 			input:focus {
 				outline: none;
 			}
 			&__clearicon {
-				width: 27px;
-				height: 27px;
-				position: absolute;
-				top: 16px;
-				left: 470px;
 				cursor: pointer;
-				z-index: 11;
+				img {
+					width: 27px;
+					height: 27px;
+					z-index: 11;
+				}
 			}
 		}
 	}
@@ -56,7 +67,7 @@
 	&__subscriptionscontainer {
 		width: 475px;
 		margin: 0 auto;
-		padding-top: 8px;
+		padding-top: 15px;
 		overflow: hidden;
 		overflow-y: scroll;
 		&::-webkit-scrollbar {
@@ -75,7 +86,7 @@
 				margin: 0;
 				padding: 0;
 				display: grid;
-				grid-template-columns: 10% 80% 10%;
+				grid-template-columns: 8% 82% 10%;
 				grid-template-areas: "icon title toggle";
 				align-items: center;
 				cursor: pointer;
@@ -93,56 +104,51 @@
 			}
 			img {
 				grid-area: icon;
-				height: 20px;
-				width: 20px;
+				height: 23px;
+				width: 23px;
 
 				grid-column-start: 1;
 			}
+		}
+	}
+}
 
-			//CSS for the toggle switches. Copied from online.
-			input[type="checkbox"] {
-				height: 0;
-				width: 0;
-				visibility: hidden;
-			}
+//Categories CSS
+#spotifypopup__categories {
+	width: 70%;
+	height: 50px;
 
-			label {
-				grid-area: toggle;
-				cursor: pointer;
-				text-indent: -9999px;
-				width: 35px;
-				height: 20px;
-				background: $mediumgray;
-				display: block;
-				border-radius: 100px;
-				position: relative;
-			}
+	ul {
+		margin: 0;
+		padding: 0;
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-end;
+		list-style-type: none;
+	}
+	li {
+		cursor: pointer;
+	}
+}
 
-			label:after {
-				content: "";
-				position: absolute;
-				top: 1px;
-				left: 1px;
-				width: 18px;
-				height: 18px;
-				background: #fff;
-				border-radius: 90px;
-				transition: 0.3s;
-			}
+.spotifypopup__categories__category {
+	width: 100px;
+	margin-left: 10px;
+	text-align: center;
+	border-bottom: 1px solid $border;
+	p {
+		margin-bottom: 10px;
+		color: $darkgray;
+		font-family: "Ubuntu Medium";
+		font-size: 1rem;
+	}
 
-			input:checked + label {
-				background: $purple;
-			}
-
-			input:checked + label:after {
-				left: 100%;
-				transform: translateX(-100%);
-			}
-
-			// This adds a little size animation when the toggle is clicked. Not currently using it.
-			// label:active:after {
-			// 	width: 130px;
-			// }
+	&__selected {
+		border-bottom: 2px solid $black;
+		p {
+			margin-bottom: 9px;
+			font-family: "Ubuntu Medium";
+			color: $black;
 		}
 	}
 }

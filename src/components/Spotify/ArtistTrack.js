@@ -24,7 +24,7 @@ export const ArtistTrack = (props) => {
 			<div className="artisttrack__title">{track.name}</div>
 			<div className="artisttrack__artist">{track.artist}</div>
 			<div className="artisttrack__date">
-				{/* {format(new Date(track.releaseDate.substring(0, 10)), "MMM d yyyy")} */}
+				{format(new Date(track.releaseDate.substring(0, 10)), "MMM d yyyy")}
 			</div>
 			<div className="artisttrack__play">
 				<a href={track.uri}>

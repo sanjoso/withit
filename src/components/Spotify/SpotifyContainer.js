@@ -9,7 +9,19 @@ export const SpotifyContainer = () => {
 	let token = window.localStorage.getItem("spotifyToken");
 	const [popup, setPopup] = useState(false);
 
-	useEffect(() => {}, []);
+	useEffect(() => {
+		const handlePopupEscape = (event) => {
+			if (event.keyCode === 27) {
+				console.log("Close");
+				setPopup(false);
+			}
+		};
+		window.addEventListener("keydown", handlePopupEscape);
+
+		return () => {
+			window.removeEventListener("keydown", handlePopupEscape);
+		};
+	}, []);
 
 	function togglePopup(event) {
 		popup ? setPopup(false) : setPopup(true);

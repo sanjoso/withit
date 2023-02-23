@@ -7,9 +7,10 @@ import {
 import { chooseSubscription } from "./redux/choiceSlice";
 
 // Icon imports
-import clearicon from "./img/xWHITE.svg";
+import clearicon from "./img/x.svg";
 import artisticon from "./img/artisticon.svg";
 import playlisticon from "./img/playlisticon.svg";
+import searchicon from "./img/searchdark.svg";
 
 // Hook imports
 import { useEffect, useState } from "react";
@@ -27,6 +28,8 @@ export const SpotifyPopup = (props) => {
 	const [subscriptions, setSubscriptions] = useState("");
 	const [searchResults, setSearchResults] = useState("");
 	const [searchResultsExist, setSearchResultsExist] = useState(false);
+	const [activeCategoryName, setActiveCategoryName] = useState("Everything");
+	const [activeCategorySubs, setActiveCategorySubs] = useState("");
 
 	useEffect(() => {
 		readJSON().then((response) => {
@@ -49,9 +52,9 @@ export const SpotifyPopup = (props) => {
 			});
 			setSearchResults(resultsArray);
 		}
-	}, [artistResults, playlistResults]);
+	}, [artistResults, playlistResults, activeCategorySubs]);
 
-	// What to do when a sub is clicked
+	// Sub is selected function
 	function handleSelect(uri, type) {
 		dispatch(chooseSubscription([uri, type]));
 	}
@@ -69,12 +72,40 @@ export const SpotifyPopup = (props) => {
 		}
 	}
 	function handleSearchClearClick(event) {
-		setSearchQuery("Search Spotify...");
+		setSearchQuery("");
 		setSearchResultsExist(false);
 	}
 	function handleSearchSubmit(event) {
 		event.preventDefault();
 		dispatch(fetchSearchResults(searchQuery));
+	}
+
+	//Category toggle function
+	function handleCategoryToggle(event) {
+		const listItem = event.target.closest("li");
+		const listItems = document.querySelectorAll(
+			".spotifypopup__categories__category"
+		);
+		listItems.forEach((item) => {
+			if (item !== listItem) {
+				item.classList.remove("spotifypopup__categories__category__selected");
+			}
+		});
+
+		listItem.classList.toggle("spotifypopup__categories__category__selected");
+
+		if (event.target.innerHTML === "Everything") {
+			setActiveCategorySubs(subscriptions);
+		} else {
+			setActiveCategorySubs(
+				Object.values(subscriptions).filter((subscription) => {
+					return (
+						subscription.type ===
+						event.target.innerHTML.toLowerCase().slice(0, -1)
+					);
+				})
+			);
+		}
 	}
 
 	// Function to handle when a current or new subscription is toggled on or off
@@ -122,6 +153,9 @@ export const SpotifyPopup = (props) => {
 		<div id="spotifypopup">
 			<div id="spotifypopup_searchbar">
 				<div id="spotifypopup__searchbar__search">
+					<div id="spotifypopup__searchbar__search__searchicon">
+						<img src={searchicon} alt="" />
+					</div>
 					<form onSubmit={handleSearchSubmit}>
 						<input
 							type="text"
@@ -129,18 +163,43 @@ export const SpotifyPopup = (props) => {
 							onChange={handleSearchChange}
 							onClick={handleSearchActivateClick}
 						/>
-						<span>
-							<img
-								id="spotifypopup__searchbar__search__clearicon"
-								src={clearicon}
-								alt=""
-								onClick={handleSearchClearClick}
-								style={{ display: searchQuery ? "block" : "none" }}
-							/>
-						</span>
 					</form>
+					<div id="spotifypopup__searchbar__search__clearicon">
+						<img
+							src={clearicon}
+							alt=""
+							onClick={handleSearchClearClick}
+							style={{ opacity: searchQuery ? "1" : "0" }}
+						/>
+					</div>
 				</div>
 			</div>
+
+			<div id="spotifypopup__categories">
+				<ul>
+					<li
+						className="spotifypopup__categories__category spotifypopup__categories__category__selected"
+						onMouseDown={handleCategoryToggle}
+						id="everthing__category"
+					>
+						<p>Everything</p>
+					</li>
+					<li
+						className="spotifypopup__categories__category"
+						onMouseDown={handleCategoryToggle}
+					>
+						<p>Artists</p>
+					</li>
+					<li
+						className="spotifypopup__categories__category"
+						onMouseDown={handleCategoryToggle}
+						id="playlists__category"
+					>
+						<p>Playlists</p>
+					</li>
+				</ul>
+			</div>
+
 			<div id="spotifypopup__subscriptionscontainer">
 				<ul>
 					{searchResultsExist
@@ -152,16 +211,10 @@ export const SpotifyPopup = (props) => {
 											src={key.type === "artist" ? artisticon : playlisticon}
 											alt=""
 										/>
-										<input
-											type="checkbox"
-											id={key.name}
-											onChange={handleToggle}
-										/>
-										<label htmlFor={key.name}>Toggle</label>
 									</li>
 								);
 						  })
-						: Object.values(subscriptions).map((value) => {
+						: Object.values(activeCategorySubs).map((value) => {
 								return (
 									<li
 										key={value.uri}
@@ -172,13 +225,6 @@ export const SpotifyPopup = (props) => {
 											src={value.type === "artist" ? artisticon : playlisticon}
 											alt=""
 										/>
-
-										<input
-											type="checkbox"
-											id={value.name}
-											onChange={handleToggle}
-										/>
-										<label htmlFor={value.name}>Toggle</label>
 									</li>
 								);
 						  })}

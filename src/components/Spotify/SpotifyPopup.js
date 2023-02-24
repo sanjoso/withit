@@ -10,7 +10,7 @@ import { chooseSubscription } from "./redux/choiceSlice";
 import clearicon from "./img/x.svg";
 import artisticon from "./img/artisticon.svg";
 import playlisticon from "./img/playlisticon.svg";
-import searchicon from "./img/searchdark.svg";
+import searchicon from "./img/searchicon.svg";
 
 // Hook imports
 import { useEffect, useState } from "react";
@@ -32,27 +32,20 @@ export const SpotifyPopup = (props) => {
 	const [activeCategorySubs, setActiveCategorySubs] = useState("");
 
 	useEffect(() => {
-		readJSON().then((response) => {
+		const fetchSubscriptions = async () => {
+			const response = await readJSON();
 			const subsParsed = JSON.parse(response);
-			let subsArray = [];
-			Object.values(subsParsed).forEach((val) => {
-				subsArray.push(val);
-			});
+			const subsArray = Object.values(subsParsed);
 			setSubscriptions(subsArray);
-		});
+		};
+		fetchSubscriptions();
 
-		if (artistResults || playlistResults) {
+		if (artistResults.length > 0 && playlistResults.length > 0) {
 			setSearchResultsExist(true);
-			let resultsArray = [];
-			artistResults.map((result) => {
-				return resultsArray.push(result);
-			});
-			playlistResults.map((result) => {
-				return resultsArray.push(result);
-			});
+			const resultsArray = [...artistResults, ...playlistResults];
 			setSearchResults(resultsArray);
 		}
-	}, [artistResults, playlistResults, activeCategorySubs]);
+	}, [artistResults, playlistResults]);
 
 	// Sub is selected function
 	function handleSelect(uri, type) {
@@ -61,8 +54,9 @@ export const SpotifyPopup = (props) => {
 
 	// Search input functions
 	function handleSearchChange(event) {
-		setSearchQuery(event.target.value);
-		if (searchQuery.length < 2) {
+		const searchValue = event.target.value;
+		setSearchQuery(searchValue);
+		if (searchValue.length < 2) {
 			setSearchResultsExist(false);
 		}
 	}
@@ -77,7 +71,9 @@ export const SpotifyPopup = (props) => {
 	}
 	function handleSearchSubmit(event) {
 		event.preventDefault();
-		dispatch(fetchSearchResults(searchQuery));
+		if (searchQuery.trim() !== "") {
+			dispatch(fetchSearchResults(searchQuery));
+		}
 	}
 
 	//Category toggle function
@@ -110,34 +106,33 @@ export const SpotifyPopup = (props) => {
 
 	// Function to handle when a current or new subscription is toggled on or off
 	function handleToggle(event) {
-		const name = event.target.id;
+		const uri = event.target.uri;
+		const name = event.target.name;
 		const toggled = event.target.checked;
 
-		let subsArray = [];
-		Object.values(subscriptions).forEach((val) => {
-			subsArray.push(val);
-		});
-		//when slider is toggled to on
+		let subsArray = [...subscriptions]; // create a copy of subscriptions array
+
+		// when slider is toggled to on
 		if (toggled === true) {
-			//if the element is already in subscriptions, then do nothing
+			// if the element is already in subscriptions, then do nothing
 			const subscriptionMatch = subsArray.find((ele) => ele.name === name);
 			if (subscriptionMatch) {
 				return;
-			}
-
-			const artistMatch = artistResults.find((ele) => ele.name === name);
-			const playlistMatch = playlistResults.find((ele) => ele.name === name);
-			if (artistMatch) {
-				let uri = artistMatch.uri;
-				const newSub = { name: name, uri: uri, type: "artist" };
-				subsArray.push(newSub);
 			} else {
-				let uri = playlistMatch.uri;
-				const newSub = { name: name, uri: uri, type: "playlist" };
-				subsArray.push(newSub);
+				const artistMatch = artistResults.find((ele) => ele.name === name);
+				const playlistMatch = playlistResults.find((ele) => ele.name === name);
+				if (artistMatch) {
+					let uri = artistMatch.uri;
+					const newSub = { name: name, uri: uri, type: "artist" };
+					subsArray.push(newSub);
+				} else {
+					let uri = playlistMatch.uri;
+					const newSub = { name: name, uri: uri, type: "playlist" };
+					subsArray.push(newSub);
+				}
+				writeJSON(JSON.stringify(subsArray));
+				setSubscriptions(subsArray); // set updated subscriptions array
 			}
-			writeJSON(JSON.stringify(subsArray));
-			setSubscriptions(subsArray);
 		}
 
 		if (toggled === false) {
@@ -145,7 +140,7 @@ export const SpotifyPopup = (props) => {
 			const matchIndex = subsArray.indexOf(match);
 			const newSubsList = subsArray.filter((_, index) => index !== matchIndex);
 			writeJSON(JSON.stringify(newSubsList));
-			setSubscriptions(newSubsList);
+			setSubscriptions(newSubsList); // set updated subscriptions array
 		}
 	}
 
@@ -174,7 +169,6 @@ export const SpotifyPopup = (props) => {
 					</div>
 				</div>
 			</div>
-
 			<div id="spotifypopup__categories">
 				<ul>
 					<li
@@ -199,18 +193,27 @@ export const SpotifyPopup = (props) => {
 					</li>
 				</ul>
 			</div>
-
 			<div id="spotifypopup__subscriptionscontainer">
 				<ul>
 					{searchResultsExist
-						? searchResults.map((key) => {
+						? searchResults.map((item, index) => {
 								return (
-									<li key={key.uri}>
-										<p>{key.name}</p>
+									<li key={item.uri}>
+										<p>{item.name}</p>
 										<img
-											src={key.type === "artist" ? artisticon : playlisticon}
+											src={item.type === "artist" ? artisticon : playlisticon}
 											alt=""
 										/>
+										<label htmlFor={`checkbox-${index}`}>
+											<input
+												type="checkbox"
+												id={`checkbox-${index}`}
+												uri={item.uri}
+												name={item.name}
+												onClick={handleToggle}
+											/>
+											<span className="checkbox" />
+										</label>
 									</li>
 								);
 						  })
@@ -225,6 +228,16 @@ export const SpotifyPopup = (props) => {
 											src={value.type === "artist" ? artisticon : playlisticon}
 											alt=""
 										/>
+										<label htmlFor={value.uri}>
+											<input
+												type="checkbox"
+												id={value.uri}
+												name={value.name}
+												onClick={handleToggle}
+												defaultChecked
+											/>
+											<span className="checkbox" />
+										</label>
 									</li>
 								);
 						  })}

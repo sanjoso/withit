@@ -1,4 +1,4 @@
-import dropdowncarat from "./img/dropdowncarat.png";
+import menuicon from "./img/menuicon.svg";
 
 import { SpotifyContainer } from "../Spotify/SpotifyContainer";
 
@@ -8,7 +8,7 @@ export const BandView = (props) => {
 			<div id="bandview__youtube">
 				<div id="bandview__youtube__title">
 					YouTube
-					<img src={dropdowncarat} alt="" />
+					{/* <img src={menuicon} alt="" /> */}
 				</div>
 			</div>
 			<div id="bandview__spotify">
@@ -17,7 +17,7 @@ export const BandView = (props) => {
 			<div id="bandview__instagram">
 				<div id="bandview__instagram__title">
 					Instagram
-					<img src={dropdowncarat} alt="" />
+					{/* <img src={menuicon} alt="" /> */}
 				</div>
 			</div>
 		</div>

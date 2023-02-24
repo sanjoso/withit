@@ -7,7 +7,7 @@
 	transform: translate(-50%, -50%);
 	background-color: $white;
 	border-radius: 15px;
-	box-shadow: 0px 0px 20px $lightgray;
+	box-shadow: 0px 0px 20px $mediumgray;
 	z-index: 10;
 
 	// Arrow CSS
@@ -47,7 +47,7 @@
 				border: none;
 				border-radius: 10px;
 				color: $darkgray;
-				font-family: "Ubuntu Medium";
+				font-family: "Poppins Medium";
 				font-size: 1.125rem;
 			}
 			input:focus {
@@ -77,7 +77,7 @@
 
 		ul {
 			width: 450px;
-			height: 230px;
+			height: 460px;
 			margin: 0;
 			padding: 0;
 			list-style-type: none;
@@ -95,19 +95,43 @@
 			p {
 				grid-area: title;
 				margin: 5px;
-				color: $darkgray;
-				font-family: "Ubuntu Medium";
-				font-size: 1rem;
+				color: $purpletext;
+				font-family: "Poppins Medium";
+				font-size: 1.0625rem;
 				text-overflow: ellipsis;
 				overflow: hidden;
 				white-space: nowrap;
 			}
 			img {
 				grid-area: icon;
-				height: 23px;
-				width: 23px;
+				height: 20px;
+				width: 20px;
+			}
 
-				grid-column-start: 1;
+			//Checkbox styling I got from Codepen
+			label {
+				grid-area: toggle;
+				input[type="checkbox"] {
+					appearance: none;
+					//position: relative;
+				}
+
+				.checkbox {
+					//position: relative;
+					display: inline-block;
+					height: 15px;
+					border-radius: 5px;
+					border: 3px solid $darkgray;
+					width: 15px;
+					transition: 100ms ease-in;
+					cursor: pointer;
+				}
+
+				input:checked + .checkbox {
+					background: $purpletext;
+					border: 3px solid $purpletext;
+				}
+				// End of Codepen Checkbox styling
 			}
 		}
 	}
@@ -139,16 +163,16 @@
 	p {
 		margin-bottom: 10px;
 		color: $darkgray;
-		font-family: "Ubuntu Medium";
+		font-family: "Poppins Medium";
 		font-size: 1rem;
 	}
 
 	&__selected {
-		border-bottom: 2px solid $black;
+		border-bottom: 2px solid $purpletext;
 		p {
 			margin-bottom: 9px;
-			font-family: "Ubuntu Medium";
-			color: $black;
+			font-family: "Poppins Semi Bold";
+			color: $purpletext;
 		}
 	}
 }

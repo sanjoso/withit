@@ -49,13 +49,53 @@ body {
   font-family: "Ubuntu Regular";
   src: url("../fonts/Ubuntu/Ubuntu-Regular.ttf");
 }
+@font-face {
+  font-family: "Poppins Light";
+  src: url("../fonts/Poppins/Poppins-Light.ttf");
+}
+@font-face {
+  font-family: "Poppins Light Italic";
+  src: url("../fonts/Poppins/Poppins-LightItalic.ttf");
+}
+@font-face {
+  font-family: "Poppins Regular";
+  src: url("../fonts/Poppins/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: "Poppins Italic";
+  src: url("../fonts/Poppins/Poppins-Italic.ttf");
+}
+@font-face {
+  font-family: "Poppins Medium";
+  src: url("../fonts/Poppins/Poppins-Medium.ttf");
+}
+@font-face {
+  font-family: "Poppins Medium Italic";
+  src: url("../fonts/Poppins/Poppins-MediumItalic.ttf");
+}
+@font-face {
+  font-family: "Poppins Semi Bold";
+  src: url("../fonts/Poppins/Poppins-SemiBold.ttf");
+}
+@font-face {
+  font-family: "Poppins Semi Bold Italic";
+  src: url("../fonts/Poppins/Poppins-SemiBoldItalic.ttf");
+}
+@font-face {
+  font-family: "Poppins Bold";
+  src: url("../fonts/Poppins/Poppins-Bold.ttf");
+}
+@font-face {
+  font-family: "Poppins Bold Italic";
+  src: url("../fonts/Poppins/Poppins-BoldItalic.ttf");
+}
 .sidebar {
   grid-area: sidebar;
-  width: 78px;
-  height: calc(100vh - 2px);
-  background-color: #fff;
-  border-radius: 0px 20px 20px 0px;
-  border: 0.5px solid #d9d9d9;
+  margin: auto 0 auto 10px;
+  width: 75px;
+  height: 90.5vh;
+  background-color: #6f6af8;
+  border-radius: 20px;
 }
 .sidebar__logo {
   height: 86px;
@@ -63,7 +103,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 0.5px solid #d9d9d9;
 }
 .sidebar__logo img {
   height: 65px;
@@ -72,15 +111,24 @@ body {
 .sidebar__nav {
   width: 100%;
   height: calc(100% - 86px);
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+}
+.sidebar__nav__buttoncontainer {
+  width: 100%;
+  margin-top: 30px;
+}
+.sidebar__nav__buttoncontainer__active {
+  margin-left: -10px;
+  box-sizing: border-box;
+  border-left: 10px solid #fff;
 }
 .sidebar__nav__button {
-  height: 26px;
-  width: 26px;
-  margin-bottom: 45px;
+  margin: 0 auto;
+  height: 25px;
+  width: 25px;
 }
 .sidebar__settingsbutton {
   padding-right: 20px;
@@ -127,16 +175,17 @@ body {
 }
 #spotifycontainer__titlebar h3 {
   margin: 0;
-  padding-right: 8px;
-  font-family: "Ubuntu Medium";
-  font-size: 1.125rem;
-  color: #6b7280;
+  padding-right: 5px;
+  font-family: "Poppins Medium";
+  font-size: 1.25rem;
+  color: #241f5c;
 }
 #spotifycontainer__titlebar img {
-  padding-right: 0px;
-  height: 24px;
-  width: 24px;
+  padding-top: 8px;
+  height: 18px;
+  width: 18px;
   cursor: pointer;
+  transform: rotate(90deg);
 }
 #spotifycontainer__login {
   height: 225px;
@@ -164,7 +213,7 @@ body {
   transform: translate(-50%, -50%);
   background-color: #fff;
   border-radius: 15px;
-  box-shadow: 0px 0px 20px #9ca3af;
+  box-shadow: 0px 0px 20px #6b7280;
   z-index: 10;
 }
 #spotifypopup__searchbar__search {
@@ -191,7 +240,7 @@ body {
   border: none;
   border-radius: 10px;
   color: #374151;
-  font-family: "Ubuntu Medium";
+  font-family: "Poppins Medium";
   font-size: 1.125rem;
 }
 #spotifypopup__searchbar__search input:focus {
@@ -218,7 +267,7 @@ body {
 }
 #spotifypopup__subscriptionscontainer ul {
   width: 450px;
-  height: 230px;
+  height: 460px;
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -235,18 +284,38 @@ body {
 #spotifypopup__subscriptionscontainer ul p {
   grid-area: title;
   margin: 5px;
-  color: #374151;
-  font-family: "Ubuntu Medium";
-  font-size: 1rem;
+  color: #241f5c;
+  font-family: "Poppins Medium";
+  font-size: 1.0625rem;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 #spotifypopup__subscriptionscontainer ul img {
   grid-area: icon;
-  height: 23px;
-  width: 23px;
-  grid-column-start: 1;
+  height: 20px;
+  width: 20px;
+}
+#spotifypopup__subscriptionscontainer ul label {
+  grid-area: toggle;
+}
+#spotifypopup__subscriptionscontainer ul label input[type=checkbox] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+#spotifypopup__subscriptionscontainer ul label .checkbox {
+  display: inline-block;
+  height: 15px;
+  border-radius: 5px;
+  border: 3px solid #374151;
+  width: 15px;
+  transition: 100ms ease-in;
+  cursor: pointer;
+}
+#spotifypopup__subscriptionscontainer ul label input:checked + .checkbox {
+  background: #241f5c;
+  border: 3px solid #241f5c;
 }
 
 #spotifypopup__categories {
@@ -274,16 +343,16 @@ body {
 .spotifypopup__categories__category p {
   margin-bottom: 10px;
   color: #374151;
-  font-family: "Ubuntu Medium";
+  font-family: "Poppins Medium";
   font-size: 1rem;
 }
 .spotifypopup__categories__category__selected {
-  border-bottom: 2px solid #1f2937;
+  border-bottom: 2px solid #241f5c;
 }
 .spotifypopup__categories__category__selected p {
   margin-bottom: 9px;
-  font-family: "Ubuntu Medium";
-  color: #1f2937;
+  font-family: "Poppins Semi Bold";
+  color: #241f5c;
 }
 
 #spotifymain {
@@ -298,9 +367,10 @@ body {
   width: 219px;
   height: 272px;
   padding-left: 24px;
-  color: #374151;
-  font-family: "Ubuntu Medium";
+  color: #241f5c;
+  font-family: "Poppins Semi Bold";
   font-size: 1.125rem;
+  overflow: hidden;
 }
 #spotifymain__artwork img {
   width: 195px;
@@ -310,7 +380,12 @@ body {
 #spotifymain__tracks {
   grid-area: tracks;
   height: 272px;
-  overflow: scroll;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+#spotifymain__tracks::-webkit-scrollbar {
+  width: 0px;
+  display: none;
 }
 
 #spotifyartwork {
@@ -349,15 +424,9 @@ body {
   grid-area: number;
   justify-self: center;
   align-self: center;
-  color: #9ca3af;
-  font-family: "Ubuntu Bold";
+  color: #6b7280;
+  font-family: "Poppins Bold";
   font-size: 1.25rem;
-}
-.playlisttrack__number {
-  grid-area: number;
-  font-family: "Ubuntu Bold";
-  font-size: 1.5rem;
-  color: #9ca3af;
 }
 .playlisttrack__artwork {
   position: relative;
@@ -384,38 +453,45 @@ body {
 }
 .playlisttrack__title {
   grid-area: title;
-  color: #374151;
-  font-family: "Ubuntu Medium";
+  width: 340px;
+  color: #241f5c;
+  font-family: "Poppins Medium";
   font-size: 1rem;
   justify-self: start;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .playlisttrack__artist {
   grid-area: artist;
-  color: #6b7280;
-  font-family: "Ubuntu Regular";
+  color: #374151;
+  font-family: "Poppins Regular";
   font-size: 0.75rem;
   justify-self: start;
 }
 .playlisttrack__date {
   grid-area: date;
-  color: #6b7280;
-  font-family: "Ubuntu Regular";
+  color: #374151;
+  font-family: "Poppins Regular";
   font-size: 0.75rem;
   justify-self: center;
 }
 .playlisttrack__play {
   grid-area: play;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   height: 40px;
+  margin-left: 20px;
   border: 0.5px solid #d9d9d9;
   border-radius: 10px;
-  justify-self: end;
 }
 .playlisttrack__play img {
   margin: 0;
-  padding: 0;
-  width: 40px;
-  height: 40px;
+  padding-top: 3px;
+  width: 25px;
+  height: 25px;
 }
 .playlisttrack__like {
   grid-area: like;
@@ -429,6 +505,7 @@ body {
   border-radius: 10px;
 }
 .playlisttrack__like img {
+  margin: 0;
   padding-top: 6px;
   width: 25px;
   height: 25px;
@@ -446,15 +523,9 @@ body {
   grid-area: number;
   justify-self: center;
   align-self: center;
-  color: #9ca3af;
-  font-family: "Ubuntu Bold";
+  color: #6b7280;
+  font-family: "Poppins Bold";
   font-size: 1.25rem;
-}
-.artisttrack__number {
-  grid-area: number;
-  font-family: "Ubuntu Bold";
-  font-size: 1.5rem;
-  color: #9ca3af;
 }
 .artisttrack__artwork {
   position: relative;
@@ -481,38 +552,45 @@ body {
 }
 .artisttrack__title {
   grid-area: title;
-  color: #374151;
-  font-family: "Ubuntu Medium";
+  width: 340px;
+  color: #241f5c;
+  font-family: "Poppins Medium";
   font-size: 1rem;
   justify-self: start;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .artisttrack__artist {
   grid-area: artist;
-  color: #6b7280;
-  font-family: "Ubuntu Regular";
+  color: #374151;
+  font-family: "Poppins Regular";
   font-size: 0.75rem;
   justify-self: start;
 }
 .artisttrack__date {
   grid-area: date;
-  color: #6b7280;
-  font-family: "Ubuntu Regular";
+  color: #374151;
+  font-family: "Poppins Regular";
   font-size: 0.75rem;
   justify-self: center;
 }
 .artisttrack__play {
   grid-area: play;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   height: 40px;
+  margin-left: 20px;
   border: 0.5px solid #d9d9d9;
   border-radius: 10px;
-  justify-self: end;
 }
 .artisttrack__play img {
   margin: 0;
-  padding: 0;
-  width: 40px;
-  height: 40px;
+  padding-top: 3px;
+  width: 25px;
+  height: 25px;
 }
 .artisttrack__like {
   grid-area: like;
@@ -526,6 +604,7 @@ body {
   border-radius: 10px;
 }
 .artisttrack__like img {
+  margin: 0;
   padding-top: 6px;
   width: 25px;
   height: 25px;

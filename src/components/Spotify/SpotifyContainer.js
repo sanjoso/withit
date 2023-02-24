@@ -2,7 +2,7 @@ import { SpotifyMain } from "./SpotifyMain";
 import { SpotifyPopup } from "./SpotifyPopup";
 import { getSpotifyToken } from "./SpotifyUtils";
 
-import dropdowncarat from "../BandView/img/dropdowncarat.png";
+import menuicon from "../BandView/img/menuicon.svg";
 import { useEffect, useState } from "react";
 
 export const SpotifyContainer = () => {
@@ -12,7 +12,6 @@ export const SpotifyContainer = () => {
 	useEffect(() => {
 		const handlePopupEscape = (event) => {
 			if (event.keyCode === 27) {
-				console.log("Close");
 				setPopup(false);
 			}
 		};
@@ -31,8 +30,8 @@ export const SpotifyContainer = () => {
 		<div id="spotifycontainer">
 			{popup ? <SpotifyPopup /> : ""}
 			<div id="spotifycontainer__titlebar">
-				<img src={dropdowncarat} alt="" onClick={togglePopup} />
 				<h3>Spotify</h3>
+				<img src={menuicon} alt="" onClick={togglePopup} />
 			</div>
 			{!token ? (
 				<div id="spotifycontainer__login">

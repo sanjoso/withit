@@ -1,10 +1,11 @@
 .sidebar {
 	grid-area: sidebar;
-	width: 78px;
-	height: calc(100vh - 2px);
-	background-color: $white;
-	border-radius: 0px 20px 20px 0px;
-	border: 0.5px solid $border;
+	margin: auto 0 auto 10px;
+	width: 75px;
+	height: 90.5vh;
+	background-color: $purple;
+	border-radius: 20px;
+	//border: 0.5px solid $border;
 
 	&__logo {
 		height: 86px;
@@ -12,7 +13,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border-bottom: 0.5px solid $border;
 
 		img {
 			height: 65px;
@@ -23,15 +23,24 @@
 	&__nav {
 		width: 100%;
 		height: calc(100% - 86px);
+		margin-top: 50px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
 
+		&__buttoncontainer {
+			width: 100%;
+			margin-top: 30px;
+			&__active {
+				margin-left: -10px;
+				box-sizing: border-box;
+				border-left: 10px solid $white;
+			}
+		}
 		&__button {
-			height: 26px;
-			width: 26px;
-			margin-bottom: 45px;
+			margin: 0 auto;
+			height: 25px;
+			width: 25px;
 		}
 	}
 

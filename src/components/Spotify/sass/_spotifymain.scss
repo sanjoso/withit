@@ -10,9 +10,10 @@
 		width: 219px;
 		height: calc(316px - 44px);
 		padding-left: 24px;
-		color: $darkgray;
-		font-family: "Ubuntu Medium";
+		color: $purpletext;
+		font-family: "Poppins Semi Bold";
 		font-size: 1.125rem;
+		overflow: hidden;
 		img {
 			width: 195px;
 			height: 195px;
@@ -24,7 +25,12 @@
 		grid-area: tracks;
 		//width: 596px;
 		height: calc(316px - 44px);
-		overflow: scroll;
+		overflow: hidden;
+		overflow-y: scroll;
+		&::-webkit-scrollbar {
+			width: 0px;
+			display: none;
+		}
 	}
 
 	// &__popup {

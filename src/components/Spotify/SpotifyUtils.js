@@ -52,5 +52,3 @@ export const getPlaylistItems = () => {
 			console.log(jsonResponse);
 		});
 };
-
-export const readJson = () => {};

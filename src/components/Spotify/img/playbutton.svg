@@ -1,9 +1,4 @@
-<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<rect width="45" height="45" fill="url(#pattern0)"/>
-<defs>
-<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image0_242_103" transform="scale(0.0104167)"/>
-</pattern>
-<image id="image0_242_103" width="96" height="96" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAB5ElEQVR4nO3cMU5UYRSG4TcaobDAWCJsQFdAooXugGBtIfQsAENtQY8VhYVaGRO3ACxBEymN0EKnFnMIyT+JMcQ448D5ved9ki+hPP/9uHAyXC5IkiRJkiRJkiRJkiRJg3UL2ADetawDc9lDVXEbOATit3wCHmYPV8HOJRd/nBGwCyxkDzlkX/9QwDjfgNXsQYdq9BcFjPMeWMweeGhiwpwCm8CN7MGrFhAtB8D97OErFxDAT+AlMJ99iKoFRMsX4HH2QSoXEO2X+WvgbvaBqhYQLcfA0+xDVS4gWj4Cy9mHq1xAuLLmFxAt+66suQWEK2t+AdHiyppcQLiy5hcQLa6s5Bbw68q6RFHRScp+yhqdpdzKGh3mO7BV5W6IjrNHAdF5Vhi46DwvGLjoPBaAP4LK3gF7FBAd5gew7RpKysW/eNzlAYVEJznzowjSLn7pvx9HYk6AZxQXCfEZosQCjoAned9v/Ylris+RJhZwUG21nERcw2p5M/uQPYsrSunVchIx47haJhUw8vH0vDvgyNVyevEPcbWcgZgyrpYzEq6W/88/an8A7iXPW/JVBcfAWvagVV/W8Qq4kz3k0F9Xs3/Jxf8MPMoertILm54Db4C37Wtf2CRJkiRJkiRJkiRJkiQxlXNnOasMjjUS4QAAAABJRU5ErkJggg=="/>
-</defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg fill="none" viewBox="0 0 240 253" xmlns="http://www.w3.org/2000/svg">
+<path d="m11.098 126.32v-48.414c0-60.11 42.566-84.725 94.653-54.67l84.045 48.414c52.086 30.055 52.086 79.285 0 109.34l-84.045 48.415c-52.086 30.055-94.653 5.439-94.653-54.67v-48.415z" fill="#241F5C" stroke="#241F5C" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="20.399"/>
 </svg>

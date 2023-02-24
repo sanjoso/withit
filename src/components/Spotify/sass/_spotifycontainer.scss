@@ -8,16 +8,17 @@
 		justify-content: end;
 		h3 {
 			margin: 0;
-			padding-right: 8px;
-			font-family: "Ubuntu Medium";
-			font-size: 1.125rem;
-			color: $mediumgray;
+			padding-right: 5px;
+			font-family: "Poppins Medium";
+			font-size: 1.25rem;
+			color: $purpletext;
 		}
 		img {
-			padding-right: 0px;
-			height: 24px;
-			width: 24px;
+			padding-top: 8px;
+			height: 18px;
+			width: 18px;
 			cursor: pointer;
+			transform: rotate(90deg);
 		}
 	}
 

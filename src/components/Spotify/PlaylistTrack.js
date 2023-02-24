@@ -1,5 +1,5 @@
-import playicon from "./img/play.png";
-import likeicon from "./img/like.png";
+import playicon from "./img/playbutton.svg";
+import likeicon from "./img/likebutton.svg";
 import albumicon from "./img/album.png";
 
 const { format } = require("date-fns");

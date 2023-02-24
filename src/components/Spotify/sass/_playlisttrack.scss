@@ -12,16 +12,9 @@
 		grid-area: number;
 		justify-self: center;
 		align-self: center;
-		color: $lightgray;
-		font-family: "Ubuntu Bold";
+		color: $mediumgray;
+		font-family: "Poppins Bold";
 		font-size: 1.25rem;
-	}
-
-	&__number {
-		grid-area: number;
-		font-family: "Ubuntu Bold";
-		font-size: 1.5rem;
-		color: $lightgray;
 	}
 
 	&__artwork {
@@ -51,40 +44,47 @@
 
 	&__title {
 		grid-area: title;
-		color: $darkgray;
-		font-family: "Ubuntu Medium";
+		width: 340px;
+		color: $purpletext;
+		font-family: "Poppins Medium";
 		font-size: 1rem;
 		justify-self: start;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
 	}
 
 	&__artist {
 		grid-area: artist;
-		color: $mediumgray;
-		font-family: "Ubuntu Regular";
+		color: $darkgray;
+		font-family: "Poppins Regular";
 		font-size: 0.75rem;
 		justify-self: start;
 	}
 
 	&__date {
 		grid-area: date;
-		color: $mediumgray;
-		font-family: "Ubuntu Regular";
+		color: $darkgray;
+		font-family: "Poppins Regular";
 		font-size: 0.75rem;
 		justify-self: center;
 	}
 
 	&__play {
 		grid-area: play;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		width: 40px;
 		height: 40px;
+		margin-left: 20px;
 		border: 0.5px solid $border;
 		border-radius: 10px;
-		justify-self: end;
 		img {
 			margin: 0;
-			padding: 0;
-			width: 40px;
-			height: 40px;
+			padding-top: 3px;
+			width: 25px;
+			height: 25px;
 		}
 	}
 
@@ -99,6 +99,7 @@
 		border: 0.5px solid $border;
 		border-radius: 10px;
 		img {
+			margin: 0;
 			padding-top: 6px;
 			width: 25px;
 			height: 25px;

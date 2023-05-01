@@ -1,6 +1,6 @@
 import playicon from "./img/playbutton.svg";
 import likeicon from "./img/likebutton.svg";
-import albumicon from "./img/album.png";
+import albumicon from "../../img/album.png";
 
 const { format } = require("date-fns");
 

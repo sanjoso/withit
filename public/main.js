@@ -2,7 +2,7 @@
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
-const { app, BrowserWindow, ipcMain, dialog } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog, session } = require("electron");
 const isDev = require("electron-is-dev");
 
 //Disables the menu bar
@@ -28,7 +28,7 @@ function createWindow() {
 	//load the index.html from a url
 	win.loadURL(
 		isDev
-			? "http://joe-suse:3000"
+			? "https://localhost:3000/"
 			: `file://${path.join(__dirname, "../build/index.html")}`
 	);
 
@@ -72,30 +72,47 @@ app.on("activate", () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-ipcMain.handle("readJSON", async (event) => {
-	const homeDir = os.homedir();
-	const dir = `${homeDir}/withIt Files`;
-	if (fs.existsSync(`${dir}/BandViewSpotify.json`)) {
-		const bufferData = fs.readFileSync(`${dir}/BandViewSpotify.json`);
+app.on(
+	"certificate-error",
+	(event, webContents, url, error, certificate, callback) => {
+		event.preventDefault();
+		callback(true);
+	}
+);
+
+app.commandLine.appendSwitch("ignore-certification-errors");
+app.commandLine.appendSwitch("allow-insecure-localhost", "true");
+
+// Functions to read and write subscriptions
+const homeDir = os.homedir();
+const dir = `${homeDir}/withIt Files`;
+
+//BandView Spotify functions
+ipcMain.handle("readBVSpotifySubs", async (event) => {
+	if (fs.existsSync(`${dir}/BVSpotifySubs.json`)) {
+		const bufferData = fs.readFileSync(`${dir}/BVSpotifySubs.json`);
 		return bufferData.toString("utf8");
 	} else {
-		fs.writeFileSync(`${dir}/BandViewSpotify.json`, "[]");
+		fs.writeFileSync(`${dir}/BVSpotifySubs.json`, "[]");
 		return [];
 	}
 });
-
-ipcMain.on("writeJSON", (event, data) => {
-	const homeDir = os.homedir();
-	const dir = `${homeDir}/withIt Files`;
-	fs.writeFileSync(`${dir}/BandViewSpotify.json`, data);
-	console.log("File written successfuly");
+ipcMain.on("writeBVSpotifySubs", (event, data) => {
+	fs.writeFileSync(`${dir}/BVSpotifySubs.json`, data);
+	console.log("Spotify subs written successfuly");
 });
 
-// Use this instead of console.log -
-/* 
-dialog.showMessageBox({
-	type: "info",
-	buttons: ["Okay"],
-	message: `${bufferData}`,
+//BandView Youtube functions
+ipcMain.handle("readBVYouTubeSubs", async (event) => {
+	if (fs.existsSync(`${dir}/BVYouTubeSubs.json`)) {
+		const bufferData = fs.readFileSync(`${dir}/BVYouTubeSubs.json`);
+		return bufferData.toString("utf8");
+	} else {
+		fs.writeFileSync(`${dir}/BVYouTubeSubs.json`, "[]");
+		return [];
+	}
 });
-*/
+ipcMain.on("writeBVYouTubeSubs", (event, data) => {
+	fs.writeFileSync(`${dir}/BVYouTubeSubs.json`, data);
+	console.log("YouTube subs written successfuly");
+});

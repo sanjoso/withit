@@ -1,6 +1,6 @@
 // Variable Declarations
 const clientId = "2d09b6bfda8f4f56879497f5f7358b0f";
-const redirect_uri = "http://joe-suse:3000/callback";
+const redirect_uri = "https://localhost:3000/callback";
 const scopes = [
 	"playlist-read-private",
 	"playlist-read-collaborative",
@@ -29,26 +29,4 @@ export const getSpotifyToken = () => {
 		window.location.hash = "";
 		window.localStorage.setItem("spotifyToken", token);
 	}
-};
-
-// As of 1-16-2023 I don't think this is used anymore. It's in playlistSlice as a thunk
-export const getPlaylistItems = () => {
-	let token = window.localStorage.getItem("spotifyToken");
-	const playlistId = "6Hq9wYRY3xs8p5SiIUc1Gw";
-	const endpoint = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
-	const headers = { Authorization: `Bearer ${token}` };
-
-	fetch(`${endpoint}`, { headers: headers })
-		.then(
-			(response) => {
-				if (response.ok) {
-					return response.json();
-				}
-				throw new Error("Request failed!");
-			},
-			(networkError) => console.log(networkError.message)
-		)
-		.then((jsonResponse) => {
-			console.log(jsonResponse);
-		});
 };

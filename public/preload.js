@@ -1,14 +1,19 @@
 const { contextBridge, ipcRenderer, dialog } = require("electron");
 
 contextBridge.exposeInMainWorld("electron", {
-	readJSON: async () => {
-		return await ipcRenderer.invoke("readJSON");
+	readBVSpotifySubs: async () => {
+		return await ipcRenderer.invoke("readBVSpotifySubs");
 	},
-	writeJSON: (data) => {
-		ipcRenderer.send("writeJSON", data);
+	writeBVSpotifySubs: (data) => {
+		ipcRenderer.send("writeBVSpotifySubs", data);
+	},
+	authenticateInstagram: () => {
+		ipcRenderer.send("get-instagram-auth-session");
+	},
+	writeBVYouTubeSubs: (data) => {
+		ipcRenderer.send("writeBVYouTubeSubs", data);
+	},
+	readBVYouTubeSubs: async () => {
+		return await ipcRenderer.invoke("readBVYouTubeSubs");
 	},
 });
-
-// const response = ipcRenderer.on("JSONResponse", (responseData) => {
-// 	console.log(response);
-//});

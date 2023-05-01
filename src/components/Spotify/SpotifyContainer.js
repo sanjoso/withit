@@ -28,7 +28,7 @@ export const SpotifyContainer = () => {
 
 	return (
 		<div id="spotifycontainer">
-			{popup ? <SpotifyPopup /> : ""}
+			{popup ? <SpotifyPopup service="BVSpotify" /> : ""}
 			<div id="spotifycontainer__titlebar">
 				<h3>Spotify</h3>
 				<img src={menuicon} alt="" onClick={togglePopup} />

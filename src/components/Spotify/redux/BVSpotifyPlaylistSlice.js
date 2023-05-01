@@ -51,7 +51,7 @@ const slice = {
 
 const playlistSlice = createSlice(slice);
 
-export const selectPlaylistArtwork = (state) => state.playlist.artwork;
-export const selectPlaylistTracks = (state) => state.playlist.tracks;
-export const selectPlaylistName = (state) => state.playlist.name;
+export const selectPlaylistArtwork = (state) => state.BVSpotifyPlaylist.artwork;
+export const selectPlaylistTracks = (state) => state.BVSpotifyPlaylist.tracks;
+export const selectPlaylistName = (state) => state.BVSpotifyPlaylist.name;
 export default playlistSlice.reducer;

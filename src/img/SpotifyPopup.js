@@ -1,16 +1,15 @@
 // Redux imports
-// BVSpotify
 import {
-	fetchBVSpotifySearchResults,
-	selectBVSpotifyArtistResults,
-	selectBVSpotifyPlaylistResults,
-} from "./redux/BVSpotifySearchSlice";
-import { BVSpotifyChooseSubscription } from "./redux/BVSpotifyChoiceSlice";
+	fetchSearchResults,
+	selectArtistResults,
+	selectPlaylistResults,
+} from "./redux/searchSlice";
+import { chooseSubscription } from "./redux/choiceSlice";
 
 // Icon imports
 import clearicon from "../../img/x.svg";
-import artisticon from "../../img/artisticon.svg";
-import playlisticon from "../../img/playlisticon.svg";
+import artisticon from "./img/artisticon.svg";
+import playlisticon from "./img/playlisticon.svg";
 import searchicon from "../../img/searchicon.svg";
 
 // Hook imports
@@ -22,10 +21,9 @@ const writeBVSpotifySubs = window.electron.writeBVSpotifySubs;
 const readBVSpotifySubs = window.electron.readBVSpotifySubs;
 
 export const SpotifyPopup = (props) => {
-	const service = props.service;
 	const dispatch = useDispatch();
-	const playlistResults = useSelector(selectBVSpotifyPlaylistResults);
-	const artistResults = useSelector(selectBVSpotifyArtistResults);
+	const playlistResults = useSelector(selectPlaylistResults);
+	const artistResults = useSelector(selectArtistResults);
 	const [searchQuery, setSearchQuery] = useState("Search Spotify...");
 	const [subscriptions, setSubscriptions] = useState("");
 	const [searchResults, setSearchResults] = useState("");
@@ -51,7 +49,7 @@ export const SpotifyPopup = (props) => {
 
 	// Sub is selected function
 	function handleSelect(uri, type) {
-		dispatch(BVSpotifyChooseSubscription([uri, type]));
+		dispatch(chooseSubscription([uri, type]));
 	}
 
 	// Search input functions
@@ -74,7 +72,7 @@ export const SpotifyPopup = (props) => {
 	function handleSearchSubmit(event) {
 		event.preventDefault();
 		if (searchQuery.trim() !== "") {
-			dispatch(fetchBVSpotifySearchResults(searchQuery));
+			dispatch(fetchSearchResults(searchQuery));
 		}
 	}
 

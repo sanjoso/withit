@@ -1,11 +1,5 @@
 // Redux imports
-// BVSpotify
-import {
-	fetchBVSpotifySearchResults,
-	selectBVSpotifyArtistResults,
-	selectBVSpotifyPlaylistResults,
-} from "./redux/BVSpotifySearchSlice";
-import { BVSpotifyChooseSubscription } from "./redux/BVSpotifyChoiceSlice";
+import { BVYouTubeChooseSubscription } from "./redux/BVYouTubeChoiceSlice";
 
 // Icon imports
 import clearicon from "../../img/x.svg";
@@ -18,40 +12,37 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Electron preload.js imports
-const writeBVSpotifySubs = window.electron.writeBVSpotifySubs;
-const readBVSpotifySubs = window.electron.readBVSpotifySubs;
+const writeBVYouTubeSubs = window.electron.writeBVYouTubeSubs;
+const readBVYouTubeSubs = window.electron.readBVYouTubeSubs;
 
-export const SpotifyPopup = (props) => {
+export const YouTubePopup = (props) => {
 	const service = props.service;
 	const dispatch = useDispatch();
-	const playlistResults = useSelector(selectBVSpotifyPlaylistResults);
-	const artistResults = useSelector(selectBVSpotifyArtistResults);
-	const [searchQuery, setSearchQuery] = useState("Search Spotify...");
+	const [searchQuery, setSearchQuery] = useState("Search YouTube...");
 	const [subscriptions, setSubscriptions] = useState("");
 	const [searchResults, setSearchResults] = useState("");
 	const [searchResultsExist, setSearchResultsExist] = useState(false);
-	const [activeCategoryName, setActiveCategoryName] = useState("Everything");
 	const [activeCategorySubs, setActiveCategorySubs] = useState("");
 
 	useEffect(() => {
 		const fetchSubscriptions = async () => {
-			const response = await readBVSpotifySubs();
+			const response = await readBVYouTubeSubs();
 			const subsParsed = JSON.parse(response);
 			const subsArray = Object.values(subsParsed);
 			setSubscriptions(subsArray);
 		};
 		fetchSubscriptions();
 
-		if (artistResults.length > 0 && playlistResults.length > 0) {
+		if (searchResults.length > 0) {
 			setSearchResultsExist(true);
-			const resultsArray = [...artistResults, ...playlistResults];
+			const resultsArray = [...searchResults];
 			setSearchResults(resultsArray);
 		}
-	}, [artistResults, playlistResults]);
+	}, [searchResults]);
 
 	// Sub is selected function
 	function handleSelect(uri, type) {
-		dispatch(BVSpotifyChooseSubscription([uri, type]));
+		dispatch(BVYouTubeChooseSubscription([uri, type]));
 	}
 
 	// Search input functions
@@ -63,7 +54,7 @@ export const SpotifyPopup = (props) => {
 		}
 	}
 	function handleSearchActivateClick() {
-		if (searchQuery === "Search Spotify...") {
+		if (searchQuery === "Search YouTube...") {
 			setSearchQuery("");
 		}
 	}
@@ -74,7 +65,7 @@ export const SpotifyPopup = (props) => {
 	function handleSearchSubmit(event) {
 		event.preventDefault();
 		if (searchQuery.trim() !== "") {
-			dispatch(fetchBVSpotifySearchResults(searchQuery));
+			//dispatch(fetchBVSpotifySearchResults(searchQuery));
 		}
 	}
 
@@ -115,35 +106,35 @@ export const SpotifyPopup = (props) => {
 		let subsArray = [...subscriptions]; // create a copy of subscriptions array
 
 		// when slider is toggled to on
-		if (toggled === true) {
-			// if the element is already in subscriptions, then do nothing
-			const subscriptionMatch = subsArray.find((ele) => ele.name === name);
-			if (subscriptionMatch) {
-				return;
-			} else {
-				const artistMatch = artistResults.find((ele) => ele.name === name);
-				const playlistMatch = playlistResults.find((ele) => ele.name === name);
-				if (artistMatch) {
-					let uri = artistMatch.uri;
-					const newSub = { name: name, uri: uri, type: "artist" };
-					subsArray.push(newSub);
-				} else {
-					let uri = playlistMatch.uri;
-					const newSub = { name: name, uri: uri, type: "playlist" };
-					subsArray.push(newSub);
-				}
-				writeBVSpotifySubs(JSON.stringify(subsArray));
-				setSubscriptions(subsArray); // set updated subscriptions array
-			}
-		}
+		// if (toggled === true) {
+		// 	// if the element is already in subscriptions, then do nothing
+		// 	const subscriptionMatch = subsArray.find((ele) => ele.name === name);
+		// 	if (subscriptionMatch) {
+		// 		return;
+		// 	} else {
+		// 		const artistMatch = artistResults.find((ele) => ele.name === name);
+		// 		const playlistMatch = playlistResults.find((ele) => ele.name === name);
+		// 		if (artistMatch) {
+		// 			let uri = artistMatch.uri;
+		// 			const newSub = { name: name, uri: uri, type: "artist" };
+		// 			subsArray.push(newSub);
+		// 		} else {
+		// 			let uri = playlistMatch.uri;
+		// 			const newSub = { name: name, uri: uri, type: "playlist" };
+		// 			subsArray.push(newSub);
+		// 		}
+		// 		writeBVYouTubeSubs(JSON.stringify(subsArray));
+		// 		setSubscriptions(subsArray); // set updated subscriptions array
+		// 	}
+		// }
 
-		if (toggled === false) {
-			const match = subsArray.find((ele) => ele.name === name);
-			const matchIndex = subsArray.indexOf(match);
-			const newSubsList = subsArray.filter((_, index) => index !== matchIndex);
-			writeBVSpotifySubs(JSON.stringify(newSubsList));
-			setSubscriptions(newSubsList); // set updated subscriptions array
-		}
+		// if (toggled === false) {
+		// 	const match = subsArray.find((ele) => ele.name === name);
+		// 	const matchIndex = subsArray.indexOf(match);
+		// 	const newSubsList = subsArray.filter((_, index) => index !== matchIndex);
+		// 	writeBVYouTubeSubs(JSON.stringify(newSubsList));
+		// 	setSubscriptions(newSubsList); // set updated subscriptions array
+		// }
 	}
 
 	return (
@@ -171,30 +162,7 @@ export const SpotifyPopup = (props) => {
 					</div>
 				</div>
 			</div>
-			<div id="spotifypopup__categories">
-				<ul>
-					<li
-						className="spotifypopup__categories__category spotifypopup__categories__category__selected"
-						onMouseDown={handleCategoryToggle}
-						id="everthing__category"
-					>
-						<p>Everything</p>
-					</li>
-					<li
-						className="spotifypopup__categories__category"
-						onMouseDown={handleCategoryToggle}
-					>
-						<p>Artists</p>
-					</li>
-					<li
-						className="spotifypopup__categories__category"
-						onMouseDown={handleCategoryToggle}
-						id="playlists__category"
-					>
-						<p>Playlists</p>
-					</li>
-				</ul>
-			</div>
+
 			<div id="spotifypopup__subscriptionscontainer">
 				<ul>
 					{searchResultsExist

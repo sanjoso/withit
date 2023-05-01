@@ -19,9 +19,11 @@ body {
 	grid-template-rows: auto auto;
 }
 
-// Imports
+// Config Imports
 @import "fonts";
 @import "colors";
+
+// BandView Spotify Imports
 @import "../components/Sidebar/sidebar";
 @import "../components/BandView/bandview";
 @import "../components/Spotify/sass/spotifycontainer";
@@ -30,3 +32,6 @@ body {
 @import "../components/Spotify/sass/spotifyartwork";
 @import "../components/Spotify/sass/playlisttrack";
 @import "../components/Spotify/sass/artisttrack";
+
+// BandView YouTube Imports
+@import "../components/YouTube/sass/youtubecontainer";

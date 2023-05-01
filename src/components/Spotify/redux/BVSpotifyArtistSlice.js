@@ -96,7 +96,7 @@ const slice = {
 
 const artistSlice = createSlice(slice);
 
-export const selectArtistResults = (state) => state.artist.results;
-export const selectArtistArtwork = (state) => state.artist.artistImage;
-export const selectArtistName = (state) => state.artist.name;
+export const selectArtistResults = (state) => state.BVSpotifyArtist.results;
+export const selectArtistArtwork = (state) => state.BVSpotifyArtist.artistImage;
+export const selectArtistName = (state) => state.BVSpotifyArtist.name;
 export default artistSlice.reducer;

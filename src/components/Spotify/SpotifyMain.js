@@ -4,14 +4,14 @@ import {
 	selectPlaylistArtwork,
 	selectPlaylistTracks,
 	selectPlaylistName,
-} from "./redux/playlistSlice";
+} from "./redux/BVSpotifyPlaylistSlice";
 import {
 	fetchArtist,
 	selectArtistResults,
 	selectArtistArtwork,
 	selectArtistName,
-} from "./redux/artistSlice";
-import { selectChoice } from "./redux/choiceSlice";
+} from "./redux/BVSpotifyArtistSlice";
+import { selectBVSpotifyChoice } from "./redux/BVSpotifyChoiceSlice";
 
 // Hook imports
 import { useDispatch, useSelector } from "react-redux";
@@ -23,7 +23,7 @@ import { ArtistTrack } from "./ArtistTrack";
 
 export const SpotifyMain = (props) => {
 	const dispatch = useDispatch();
-	const choice = useSelector(selectChoice);
+	const choice = useSelector(selectBVSpotifyChoice);
 	const playlistArtwork = useSelector(selectPlaylistArtwork);
 	const playlistTracks = useSelector(selectPlaylistTracks);
 	const playlistName = useSelector(selectPlaylistName);

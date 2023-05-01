@@ -1,16 +1,24 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import playlistReducer from "./components/Spotify/redux/playlistSlice";
-import artistReducer from "./components/Spotify/redux/artistSlice";
-import searchReducer from "./components/Spotify/redux/searchSlice";
-import choiceReducer from "./components/Spotify/redux/choiceSlice";
+//Spotify Reducers
+import BVSpotifyPlaylistReducer from "./components/Spotify/redux/BVSpotifyPlaylistSlice";
+import BVSpotifyArtistReducer from "./components/Spotify/redux/BVSpotifyArtistSlice";
+import BVSpotifySearchReducer from "./components/Spotify/redux/BVSpotifySearchSlice";
+import BVSpotifyChoiceReducer from "./components/Spotify/redux/BVSpotifyChoiceSlice";
+
+//YT Reducers
+import BVYouTubeChannelSearchReducer from "./components/YouTube/redux/BVYouTubeChannelSearchSlice";
+import BVYouTubeChoiceReducer from "./components/YouTube/redux/BVYouTubeChoiceSlice";
 
 const store = configureStore({
 	reducer: {
-		playlist: playlistReducer,
-		artist: artistReducer,
-		search: searchReducer,
-		choice: choiceReducer,
+		BVSpotifyPlaylist: BVSpotifyPlaylistReducer,
+		BVSpotifyArtist: BVSpotifyArtistReducer,
+		BVSpotifySearch: BVSpotifySearchReducer,
+		BVSpotifyChoice: BVSpotifyChoiceReducer,
+
+		BVYouTubeChannelSearch: BVYouTubeChannelSearchReducer,
+		BVYouTubeChoice: BVYouTubeChoiceReducer,
 	},
 });
 

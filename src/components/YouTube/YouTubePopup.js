@@ -1,10 +1,13 @@
 // Redux imports
 import { BVYouTubeChooseSubscription } from "./redux/BVYouTubeChoiceSlice";
+import {
+	fetchBVYouTubeChannels,
+	selectBVYouTubeChannels,
+} from "./redux/BVYouTubeChannelSearchSlice";
 
 // Icon imports
 import clearicon from "../../img/x.svg";
-import artisticon from "../../img/artisticon.svg";
-import playlisticon from "../../img/playlisticon.svg";
+import youtubeicon from "../../img/youtubeicon.svg";
 import searchicon from "../../img/searchicon.svg";
 
 // Hook imports
@@ -15,14 +18,13 @@ import { useDispatch, useSelector } from "react-redux";
 const writeBVYouTubeSubs = window.electron.writeBVYouTubeSubs;
 const readBVYouTubeSubs = window.electron.readBVYouTubeSubs;
 
-export const YouTubePopup = (props) => {
-	const service = props.service;
+export const YouTubePopup = () => {
 	const dispatch = useDispatch();
+	const channelResults = useSelector(selectBVYouTubeChannels);
 	const [searchQuery, setSearchQuery] = useState("Search YouTube...");
 	const [subscriptions, setSubscriptions] = useState("");
 	const [searchResults, setSearchResults] = useState("");
 	const [searchResultsExist, setSearchResultsExist] = useState(false);
-	const [activeCategorySubs, setActiveCategorySubs] = useState("");
 
 	useEffect(() => {
 		const fetchSubscriptions = async () => {
@@ -33,12 +35,13 @@ export const YouTubePopup = (props) => {
 		};
 		fetchSubscriptions();
 
-		if (searchResults.length > 0) {
+		if (channelResults.length > 0) {
 			setSearchResultsExist(true);
-			const resultsArray = [...searchResults];
+			const resultsArray = [...channelResults];
+			console.log(resultsArray);
 			setSearchResults(resultsArray);
 		}
-	}, [searchResults]);
+	}, [channelResults]);
 
 	// Sub is selected function
 	function handleSelect(uri, type) {
@@ -65,78 +68,45 @@ export const YouTubePopup = (props) => {
 	function handleSearchSubmit(event) {
 		event.preventDefault();
 		if (searchQuery.trim() !== "") {
-			//dispatch(fetchBVSpotifySearchResults(searchQuery));
-		}
-	}
-
-	//Category toggle function
-	function handleCategoryToggle(event) {
-		const listItem = event.target.closest("li");
-		const listItems = document.querySelectorAll(
-			".spotifypopup__categories__category"
-		);
-		listItems.forEach((item) => {
-			if (item !== listItem) {
-				item.classList.remove("spotifypopup__categories__category__selected");
-			}
-		});
-
-		listItem.classList.toggle("spotifypopup__categories__category__selected");
-
-		if (event.target.innerHTML === "Everything") {
-			setActiveCategorySubs(subscriptions);
-		} else {
-			setActiveCategorySubs(
-				Object.values(subscriptions).filter((subscription) => {
-					return (
-						subscription.type ===
-						event.target.innerHTML.toLowerCase().slice(0, -1)
-					);
-				})
-			);
+			dispatch(fetchBVYouTubeChannels(searchQuery));
 		}
 	}
 
 	// Function to handle when a current or new subscription is toggled on or off
 	function handleToggle(event) {
-		const uri = event.target.uri;
+		const channelId = event.target.uri;
 		const name = event.target.name;
 		const toggled = event.target.checked;
 
 		let subsArray = [...subscriptions]; // create a copy of subscriptions array
 
 		// when slider is toggled to on
-		// if (toggled === true) {
-		// 	// if the element is already in subscriptions, then do nothing
-		// 	const subscriptionMatch = subsArray.find((ele) => ele.name === name);
-		// 	if (subscriptionMatch) {
-		// 		return;
-		// 	} else {
-		// 		const artistMatch = artistResults.find((ele) => ele.name === name);
-		// 		const playlistMatch = playlistResults.find((ele) => ele.name === name);
-		// 		if (artistMatch) {
-		// 			let uri = artistMatch.uri;
-		// 			const newSub = { name: name, uri: uri, type: "artist" };
-		// 			subsArray.push(newSub);
-		// 		} else {
-		// 			let uri = playlistMatch.uri;
-		// 			const newSub = { name: name, uri: uri, type: "playlist" };
-		// 			subsArray.push(newSub);
-		// 		}
-		// 		writeBVYouTubeSubs(JSON.stringify(subsArray));
-		// 		setSubscriptions(subsArray); // set updated subscriptions array
-		// 	}
-		// }
+		if (toggled === true) {
+			// if the element is already in subscriptions, then do nothing
+			const subscriptionMatch = subsArray.find(
+				(ele) => ele.snippet.channelTitle === name
+			);
+			if (subscriptionMatch) {
+				return;
+			} else {
+				const newSub = {
+					name: name,
+					channelId: channelId,
+				};
+				subsArray.push(newSub);
+			}
+			writeBVYouTubeSubs(JSON.stringify(subsArray));
+			setSubscriptions(subsArray); // set updated subscriptions array
+		}
 
-		// if (toggled === false) {
-		// 	const match = subsArray.find((ele) => ele.name === name);
-		// 	const matchIndex = subsArray.indexOf(match);
-		// 	const newSubsList = subsArray.filter((_, index) => index !== matchIndex);
-		// 	writeBVYouTubeSubs(JSON.stringify(newSubsList));
-		// 	setSubscriptions(newSubsList); // set updated subscriptions array
-		// }
+		if (toggled === false) {
+			const match = subsArray.find((ele) => ele.name === name);
+			const matchIndex = subsArray.indexOf(match);
+			const newSubsList = subsArray.filter((_, index) => index !== matchIndex);
+			writeBVYouTubeSubs(JSON.stringify(newSubsList));
+			setSubscriptions(newSubsList); // set updated subscriptions array
+		}
 	}
-
 	return (
 		<div id="spotifypopup">
 			<div id="spotifypopup_searchbar">
@@ -168,18 +138,15 @@ export const YouTubePopup = (props) => {
 					{searchResultsExist
 						? searchResults.map((item, index) => {
 								return (
-									<li key={item.uri}>
-										<p>{item.name}</p>
-										<img
-											src={item.type === "artist" ? artisticon : playlisticon}
-											alt=""
-										/>
+									<li key={item.snippet.channelId}>
+										<p>{item.snippet.channelTitle}</p>
+										<img src={youtubeicon} alt="" />
 										<label htmlFor={`checkbox-${index}`}>
 											<input
 												type="checkbox"
 												id={`checkbox-${index}`}
-												uri={item.uri}
-												name={item.name}
+												channelid={item.snippet.channelTitle}
+												name={item.snippet.channelTitle}
 												onClick={handleToggle}
 											/>
 											<span className="checkbox" />
@@ -187,17 +154,14 @@ export const YouTubePopup = (props) => {
 									</li>
 								);
 						  })
-						: Object.values(activeCategorySubs).map((value) => {
+						: Object.values(subscriptions).map((value) => {
 								return (
 									<li
-										key={value.uri}
+										key={value.channelId}
 										onClick={() => handleSelect(value.uri, value.type)}
 									>
 										<p>{value.name}</p>
-										<img
-											src={value.type === "artist" ? artisticon : playlisticon}
-											alt=""
-										/>
+										<img src={youtubeicon} alt="" />
 										<label htmlFor={value.uri}>
 											<input
 												type="checkbox"

@@ -14,9 +14,7 @@ export const YouTubeContainer = () => {
 	const results = useSelector(selectBVYouTubeChannels);
 	const [popup, setPopup] = useState(false);
 
-	useEffect(() => {
-		console.log(results);
-	}, [results]);
+	useEffect(() => {});
 
 	function togglePopup() {
 		popup ? setPopup(false) : setPopup(true);
@@ -31,8 +29,6 @@ export const YouTubeContainer = () => {
 			<div id="youtubecontainer__titlebar">
 				<h3>YouTube</h3>
 				<img src={menuicon} alt="" onClick={togglePopup} />
-				<div id="youtubecontainer__popup"></div>
-				<button onClick={handleClick}>Search YT</button>
 			</div>
 		</div>
 	);

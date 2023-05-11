@@ -5,12 +5,12 @@ export const fetchBVYouTubeChannels = createAsyncThunk(
 	async (searchQuery) => {
 		const apiKey = "AIzaSyDhHfCHwLagwTnom1_Vc1pMQIJAoaZO35Y";
 		const endpoint = "https://www.googleapis.com/youtube/v3/search";
-		const searchTerm = "Elevation Worship";
 		try {
 			const response = await fetch(
-				`https://www.googleapis.com/youtube/v3/search?q=' + ${searchTerm} + '&part=snippet&type=channel&key=${apiKey}`
+				`https://www.googleapis.com/youtube/v3/search?q=' + ${searchQuery} + '&part=snippet&type=channel&key=${apiKey}`
 			);
 			const jsonResponse = await response.json();
+			console.log(jsonResponse);
 			return jsonResponse;
 		} catch (error) {
 			console.log(error);

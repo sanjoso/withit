@@ -1,5 +1,4 @@
 // Redux imports
-// BVSpotify
 import {
 	fetchBVSpotifySearchResults,
 	selectBVSpotifyArtistResults,

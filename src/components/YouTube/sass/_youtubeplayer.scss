@@ -1,0 +1,25 @@
+#youtubeplayer {
+	width: 850px;
+	height: 478px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: $white;
+	border-radius: 15px;
+	box-shadow: 0px 0px 20px $mediumgray;
+	z-index: 10;
+
+	&__video {
+		width: 100%;
+
+		iframe {
+			width: 100%;
+			aspect-ratio: 16/9;
+			border-radius: 15px;
+		}
+	}
+}

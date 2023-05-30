@@ -1,0 +1,38 @@
+#youtubevideocard {
+	width: 45%;
+	height: 203px;
+	margin-bottom: 10px;
+	//border: 0.5px solid $border;
+	border-radius: 10px;
+
+	&__thumbnail {
+		width: 85%;
+		margin: 0 auto;
+		aspect-ratio: 16/9;
+		border-radius: 10px;
+		cursor: pointer;
+		object-fit: contain;
+		overflow: hidden;
+	}
+
+	&__title {
+		width: 85%;
+		margin: 0 auto;
+		color: $purpletext;
+		font-family: "Poppins Medium";
+		font-size: 0.9rem;
+		justify-self: start;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+
+	&__date {
+		width: 85%;
+		margin: 0 auto;
+		grid-area: artist;
+		color: $darkgray;
+		font-family: "Poppins Regular";
+		font-size: 0.75rem;
+	}
+}

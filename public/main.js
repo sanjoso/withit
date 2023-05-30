@@ -5,6 +5,12 @@ const os = require("os");
 const { app, BrowserWindow, ipcMain, dialog, session } = require("electron");
 const isDev = require("electron-is-dev");
 
+//Chromium extension paths
+const reduxDevToolsPath = path.join(
+	os.homedir(),
+	".config/chromium/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/3.0.19_0"
+);
+
 //Disables the menu bar
 const { Menu } = require("electron");
 Menu.setApplicationMenu(null);
@@ -28,7 +34,7 @@ function createWindow() {
 	//load the index.html from a url
 	win.loadURL(
 		isDev
-			? "https://localhost:3000/"
+			? "https://joe-suse:3000/"
 			: `file://${path.join(__dirname, "../build/index.html")}`
 	);
 
@@ -49,7 +55,12 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow);
+app
+	.whenReady()
+	.then(createWindow)
+	.then(async () => {
+		await session.defaultSession.loadExtension(reduxDevToolsPath);
+	});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

@@ -1,4 +1,7 @@
 #youtubecontainer {
+	height: 100%;
+	width: 100%;
+
 	&__titlebar {
 		height: 44px;
 		width: 100%;
@@ -22,22 +25,18 @@
 		}
 	}
 
-	&__login {
-		height: 390px;
+	&__videos {
+		width: 95%;
+		height: 89%;
+		margin: 0 auto;
 		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		&btn {
-			width: 350px;
-			height: 50px;
-			background-color: #ff0000;
-			border: none;
-
-			// color: #010000;
-			color: $white;
-			font-family: "Poppins Semi Bold";
-			font-size: 1.125rem;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+		overflow: hidden;
+		overflow-y: scroll;
+		&::-webkit-scrollbar {
+			width: 0px;
+			display: none;
 		}
 	}
 }

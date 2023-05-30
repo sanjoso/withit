@@ -610,6 +610,10 @@ body {
   height: 25px;
 }
 
+#youtubecontainer {
+  height: 100%;
+  width: 100%;
+}
 #youtubecontainer__titlebar {
   height: 44px;
   width: 100%;
@@ -632,18 +636,77 @@ body {
   cursor: pointer;
   transform: rotate(90deg);
 }
-#youtubecontainer__login {
-  height: 390px;
+#youtubecontainer__videos {
+  width: 95%;
+  height: 89%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+#youtubecontainer__videos::-webkit-scrollbar {
+  width: 0px;
+  display: none;
+}
+
+#youtubevideocard {
+  width: 45%;
+  height: 203px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+#youtubevideocard__thumbnail {
+  width: 85%;
+  margin: 0 auto;
+  aspect-ratio: 16/9;
+  border-radius: 10px;
+  cursor: pointer;
+  -o-object-fit: contain;
+     object-fit: contain;
+  overflow: hidden;
+}
+#youtubevideocard__title {
+  width: 85%;
+  margin: 0 auto;
+  color: #241f5c;
+  font-family: "Poppins Medium";
+  font-size: 0.9rem;
+  justify-self: start;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#youtubevideocard__date {
+  width: 85%;
+  margin: 0 auto;
+  grid-area: artist;
+  color: #374151;
+  font-family: "Poppins Regular";
+  font-size: 0.75rem;
+}
+
+#youtubeplayer {
+  width: 850px;
+  height: 478px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px #6b7280;
+  z-index: 10;
 }
-#youtubecontainer__loginbtn {
-  width: 350px;
-  height: 50px;
-  background-color: #ff0000;
-  border: none;
-  color: #fff;
-  font-family: "Poppins Semi Bold";
-  font-size: 1.125rem;
+#youtubeplayer__video {
+  width: 100%;
+}
+#youtubeplayer__video iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 15px;
 }/*# sourceMappingURL=main.css.map */

@@ -8,6 +8,7 @@ import BVSpotifyChoiceReducer from "./components/Spotify/redux/BVSpotifyChoiceSl
 
 //YT Reducers
 import BVYouTubeChannelSearchReducer from "./components/YouTube/redux/BVYouTubeChannelSearchSlice";
+import BVYouTubeVideosReducer from "./components/YouTube/redux/BVYouTubeVideosSlice";
 import BVYouTubeChoiceReducer from "./components/YouTube/redux/BVYouTubeChoiceSlice";
 
 const store = configureStore({
@@ -18,6 +19,7 @@ const store = configureStore({
 		BVSpotifyChoice: BVSpotifyChoiceReducer,
 
 		BVYouTubeChannelSearch: BVYouTubeChannelSearchReducer,
+		BVYouTubeVideos: BVYouTubeVideosReducer,
 		BVYouTubeChoice: BVYouTubeChoiceReducer,
 	},
 });

@@ -38,14 +38,13 @@ export const YouTubePopup = () => {
 		if (channelResults.length > 0) {
 			setSearchResultsExist(true);
 			const resultsArray = [...channelResults];
-			console.log(resultsArray);
 			setSearchResults(resultsArray);
 		}
 	}, [channelResults]);
 
 	// Sub is selected function
-	function handleSelect(uri, type) {
-		dispatch(BVYouTubeChooseSubscription([uri, type]));
+	function handleSelect(value) {
+		dispatch(BVYouTubeChooseSubscription(value));
 	}
 
 	// Search input functions
@@ -74,7 +73,7 @@ export const YouTubePopup = () => {
 
 	// Function to handle when a current or new subscription is toggled on or off
 	function handleToggle(event) {
-		const channelId = event.target.uri;
+		const channelId = event.target.getAttribute("channelid");
 		const name = event.target.name;
 		const toggled = event.target.checked;
 
@@ -83,9 +82,7 @@ export const YouTubePopup = () => {
 		// when slider is toggled to on
 		if (toggled === true) {
 			// if the element is already in subscriptions, then do nothing
-			const subscriptionMatch = subsArray.find(
-				(ele) => ele.snippet.channelTitle === name
-			);
+			const subscriptionMatch = subsArray.find((ele) => ele.name === name);
 			if (subscriptionMatch) {
 				return;
 			} else {
@@ -145,7 +142,7 @@ export const YouTubePopup = () => {
 											<input
 												type="checkbox"
 												id={`checkbox-${index}`}
-												channelid={item.snippet.channelTitle}
+												channelid={item.snippet.channelId}
 												name={item.snippet.channelTitle}
 												onClick={handleToggle}
 											/>
@@ -156,10 +153,7 @@ export const YouTubePopup = () => {
 						  })
 						: Object.values(subscriptions).map((value) => {
 								return (
-									<li
-										key={value.channelId}
-										onClick={() => handleSelect(value.uri, value.type)}
-									>
+									<li key={value.channelId} onClick={() => handleSelect(value)}>
 										<p>{value.name}</p>
 										<img src={youtubeicon} alt="" />
 										<label htmlFor={value.uri}>

@@ -26,9 +26,20 @@ export const SpotifyContainer = () => {
 		popup ? setPopup(false) : setPopup(true);
 	}
 
+	function handleClickOutsidePopup(click) {
+		setPopup(false);
+	}
+
 	return (
 		<div id="spotifycontainer">
-			{popup ? <SpotifyPopup service="BVSpotify" /> : ""}
+			{popup ? (
+				<SpotifyPopup
+					service="BVSpotify"
+					handleClickOutsidePopup={handleClickOutsidePopup}
+				/>
+			) : (
+				""
+			)}
 			<div id="spotifycontainer__titlebar">
 				<h3>Spotify</h3>
 				<img src={menuicon} alt="" onClick={togglePopup} />

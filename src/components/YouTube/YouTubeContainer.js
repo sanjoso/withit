@@ -30,15 +30,16 @@ export const YouTubeContainer = () => {
 			dispatch(fetchBVYouTubeVideos(choice));
 		}
 
-		const handlePopupEscape = (event) => {
+		function handlePopupClose(event) {
 			if (event.keyCode === 27) {
 				setPopup(false);
 			}
-		};
-		window.addEventListener("keydown", handlePopupEscape);
+		}
+
+		window.addEventListener("keydown", handlePopupClose);
 
 		return () => {
-			window.removeEventListener("keydown", handlePopupEscape);
+			window.removeEventListener("keydown", handlePopupClose);
 		};
 	}, [choice]);
 
@@ -49,9 +50,20 @@ export const YouTubeContainer = () => {
 		dispatch(fetchBVYouTubeChannels());
 	}
 
+	function handleClickOutsidePopup(click) {
+		setPopup(false);
+	}
+
 	return (
 		<div id="youtubecontainer">
-			{popup ? <YouTubePopup service="BVYouTube" /> : ""}
+			{popup ? (
+				<YouTubePopup
+					service="BVYouTube"
+					handleClickOutsidePopup={handleClickOutsidePopup}
+				/>
+			) : (
+				""
+			)}
 			<div id="youtubecontainer__titlebar">
 				<h3>YouTube</h3>
 				<img src={menuicon} alt="" onClick={togglePopup} />

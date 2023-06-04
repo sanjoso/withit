@@ -13,15 +13,15 @@ import playlisticon from "../../img/playlisticon.svg";
 import searchicon from "../../img/searchicon.svg";
 
 // Hook imports
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useClickOutsideHook } from "../../hooks/useClickOutsideHook";
 
 // Electron preload.js imports
 const writeBVSpotifySubs = window.electron.writeBVSpotifySubs;
 const readBVSpotifySubs = window.electron.readBVSpotifySubs;
 
-export const SpotifyPopup = (props) => {
-	const service = props.service;
+export const SpotifyPopup = ({ handleClickOutsidePopup }) => {
 	const dispatch = useDispatch();
 	const playlistResults = useSelector(selectBVSpotifyPlaylistResults);
 	const artistResults = useSelector(selectBVSpotifyArtistResults);
@@ -31,6 +31,13 @@ export const SpotifyPopup = (props) => {
 	const [searchResultsExist, setSearchResultsExist] = useState(false);
 	const [activeCategoryName, setActiveCategoryName] = useState("Everything");
 	const [activeCategorySubs, setActiveCategorySubs] = useState("");
+	const clickRef = useRef(null);
+
+	//Handles the popup closing when the user clicks outside of it
+	const clickedOutside = useClickOutsideHook(clickRef);
+	if (clickedOutside) {
+		handleClickOutsidePopup(false);
+	}
 
 	useEffect(() => {
 		const fetchSubscriptions = async () => {
@@ -146,7 +153,7 @@ export const SpotifyPopup = (props) => {
 	}
 
 	return (
-		<div id="spotifypopup">
+		<div id="spotifypopup" ref={clickRef}>
 			<div id="spotifypopup_searchbar">
 				<div id="spotifypopup__searchbar__search">
 					<div id="spotifypopup__searchbar__search__searchicon">

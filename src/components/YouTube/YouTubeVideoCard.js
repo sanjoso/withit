@@ -26,9 +26,19 @@ export const YouTubeVideoCard = (props) => {
 		};
 	}
 
+	function handleClickOutsidePlayer(click) {
+		togglePlayer(false);
+	}
+
 	return (
 		<div id="youtubevideocard" onClick={handleClick}>
-			{player ? <YouTubePlayer videoId={videoId} title={title} /> : null}
+			{player ? (
+				<YouTubePlayer
+					videoId={videoId}
+					title={title}
+					handleClickOutsidePlayer={handleClickOutsidePlayer}
+				/>
+			) : null}
 
 			<div id="youtubevideocard__thumbnail">
 				<img src={thumbnail} alt="" />

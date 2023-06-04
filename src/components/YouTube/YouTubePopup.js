@@ -11,20 +11,28 @@ import youtubeicon from "../../img/youtubeicon.svg";
 import searchicon from "../../img/searchicon.svg";
 
 // Hook imports
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useClickOutsideHook } from "../../hooks/useClickOutsideHook";
 
 // Electron preload.js imports
 const writeBVYouTubeSubs = window.electron.writeBVYouTubeSubs;
 const readBVYouTubeSubs = window.electron.readBVYouTubeSubs;
 
-export const YouTubePopup = () => {
+export const YouTubePopup = ({ handleClickOutsidePopup }) => {
 	const dispatch = useDispatch();
 	const channelResults = useSelector(selectBVYouTubeChannels);
 	const [searchQuery, setSearchQuery] = useState("Search YouTube...");
 	const [subscriptions, setSubscriptions] = useState("");
 	const [searchResults, setSearchResults] = useState("");
 	const [searchResultsExist, setSearchResultsExist] = useState(false);
+	const clickRef = useRef(null);
+
+	//Handles the popup closing when the user clicks outside of it
+	const clickedOutside = useClickOutsideHook(clickRef);
+	if (clickedOutside) {
+		handleClickOutsidePopup(false);
+	}
 
 	useEffect(() => {
 		const fetchSubscriptions = async () => {
@@ -105,7 +113,7 @@ export const YouTubePopup = () => {
 		}
 	}
 	return (
-		<div id="spotifypopup">
+		<div id="spotifypopup" ref={clickRef}>
 			<div id="spotifypopup_searchbar">
 				<div id="spotifypopup__searchbar__search">
 					<div id="spotifypopup__searchbar__search__searchicon">

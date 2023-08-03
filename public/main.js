@@ -2,14 +2,9 @@
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
-const { app, BrowserWindow, ipcMain, dialog, session } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const isDev = require("electron-is-dev");
-
-//Chromium extension paths
-const reduxDevToolsPath = path.join(
-	os.homedir(),
-	".config/chromium/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/3.0.19_0"
-);
+const fetch = require("node-fetch");
 
 //Disables the menu bar
 const { Menu } = require("electron");
@@ -34,7 +29,7 @@ function createWindow() {
 	//load the index.html from a url
 	win.loadURL(
 		isDev
-			? "https://joe-suse:3000/"
+			? "https://localhost:3000/"
 			: `file://${path.join(__dirname, "../build/index.html")}`
 	);
 
@@ -55,12 +50,7 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app
-	.whenReady()
-	.then(createWindow)
-	.then(async () => {
-		await session.defaultSession.loadExtension(reduxDevToolsPath);
-	});
+app.whenReady().then(createWindow);
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
@@ -126,4 +116,56 @@ ipcMain.handle("readBVYouTubeSubs", async (event) => {
 ipcMain.on("writeBVYouTubeSubs", (event, data) => {
 	fs.writeFileSync(`${dir}/BVYouTubeSubs.json`, data);
 	console.log("YouTube subs written successfuly");
+});
+
+//BandView Instagram Functions
+ipcMain.handle("getInstagramToken", (event, ipcData) => {
+	const clientId = "1355978245262681";
+	const redirectUri = "https://localhost:3000/";
+	const scopes = "user_profile,user_media";
+	const clientSecret = "cf28e0c9f49deb958cf22a00020da6b9";
+	const responseType = "code";
+	const codeEndpoint = `https://api.instagram.com/oauth/authorize?client_id=${clientId}&response_type=${responseType}&redirect_uri=${redirectUri}&scope=${scopes}`;
+	const accessTokenEndpoint = "https://api.instagram.com/oauth/access_token";
+
+	const authWindow = new BrowserWindow({
+		width: 800,
+		height: 600,
+	});
+
+	authWindow.loadURL(codeEndpoint);
+
+	return new Promise((resolve, reject) => {
+		authWindow.webContents.on("will-redirect", (event, newUrl) => {
+			const url = new URL(newUrl);
+
+			dialog.showMessageBox({
+				message: `${url}`,
+				buttons: ["okay"],
+			});
+			resolve(url);
+		});
+	});
+
+	// const formData = new URLSearchParams();
+	// formData.append("client_id", clientId);
+	// formData.append("client_secret", clientSecret);
+	// formData.append("grant_type", "authorization_code");
+	// formData.append("redirect_uri", redirectUri);
+	// formData.append("code", code);
+
+	// const response = await fetch(accessTokenEndpoint, {
+	// 	method: "POST",
+	// 	body: formData,
+	// });
+
+	// const data = await response.json();
+	// window.localStorage.setItem("instagramToken", data.access_token);
+	// dialog.showMessageBox({
+	// 	title: "Dialog Box",
+	// 	message: "Hello, Electron!",
+	// 	buttons: ["OK"],
+	// });
+
+	// return data.access_token;
 });

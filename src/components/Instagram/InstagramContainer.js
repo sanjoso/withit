@@ -1,10 +1,17 @@
 import { useEffect } from "react";
 
+import { authenticateInstagram } from "./InstagramUtils";
+const getInstagramToken = window.electron.getInstagramToken;
+
 export const InstagramContainer = () => {
-	function handleClick(event) {}
+	async function handleLogin(event) {
+		const code = await getInstagramToken();
+		window.localStorage.setItem("instagramCode", code);
+	}
+
 	return (
 		<div id="instagramcontainer">
-			<button onClick={handleClick}>Log in to Instagram</button>
+			<button onClick={handleLogin}>Log in to Instagram</button>
 		</div>
 	);
 };

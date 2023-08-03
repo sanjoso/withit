@@ -1,6 +1,6 @@
 // Variable Declarations
 const clientId = "2d09b6bfda8f4f56879497f5f7358b0f";
-const redirect_uri = "https://joe-suse:3000/callback";
+const redirect_uri = "https://localhost:3000/callback";
 const scopes = [
 	"playlist-read-private",
 	"playlist-read-collaborative",

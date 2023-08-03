@@ -1,4 +1,4 @@
-const { contextBridge, ipcRenderer, dialog } = require("electron");
+const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("electron", {
 	readBVSpotifySubs: async () => {
@@ -7,13 +7,13 @@ contextBridge.exposeInMainWorld("electron", {
 	writeBVSpotifySubs: (data) => {
 		ipcRenderer.send("writeBVSpotifySubs", data);
 	},
-	authenticateInstagram: () => {
-		ipcRenderer.send("get-instagram-auth-session");
-	},
 	writeBVYouTubeSubs: (data) => {
 		ipcRenderer.send("writeBVYouTubeSubs", data);
 	},
 	readBVYouTubeSubs: async () => {
 		return await ipcRenderer.invoke("readBVYouTubeSubs");
+	},
+	getInstagramToken: async (data) => {
+		return await ipcRenderer.invoke("getInstagramToken", data);
 	},
 });

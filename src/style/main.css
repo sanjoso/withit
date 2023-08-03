@@ -668,7 +668,7 @@ body {
   overflow: hidden;
 }
 #youtubevideocard__title {
-  width: 75%;
+  width: 87%;
   margin: 0 auto;
   color: #241f5c;
   font-family: "Poppins Medium";
@@ -679,7 +679,7 @@ body {
   white-space: nowrap;
 }
 #youtubevideocard__date {
-  width: 85%;
+  width: 87%;
   margin: 0 auto;
   grid-area: artist;
   color: #374151;
